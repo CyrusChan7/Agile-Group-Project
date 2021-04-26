@@ -1,0 +1,86 @@
+
+<div id="weather">
+    <div id="description"></div>
+    <h4 id="temp"></h1>
+    <div id="location"></div>
+</div>
+
+<script onload="pageLoaded();" src="scripts/weather"></script>
+
+<!-- End of weather API code -->
+
+<div class="container">
+    <h1>
+        <img src=<%=user.avatar %>>
+        <%= user.name %>
+    </h1>
+    <h1 class="page-header">Reminders</h1>
+
+    <form action="/reminders/search" method="GET">
+        <input type="text" name="search" id="search" placeholder="Search for reminder names" class="search" />
+        <button class="search-btn" type="submit">Search</button>
+    </form>
+
+
+    <ul class="list-group">
+        <% reminders.forEach(function (reminderItem) { %>
+            <li class="list-group-item">
+                <img src=<%=reminderItem.image_url %> alt=
+                <%= reminderItem.title %> style="width:50px; height:50px;">
+
+                    <strong><%= reminderItem.title %>: </strong>
+                    <%= reminderItem.description %>
+                        || Date&Time:
+                        <%= reminderItem.date %>
+                            || Tags: (<%= reminderItem.tags %>) || Completed:
+                                <% if (reminderItem.completed == true) { %>
+                                    <span class="badge badge-success">True</span>
+                                    <% } else if (reminderItem.completed == false) { %>
+                                        <span class="badge badge-danger">False</span>
+                                        <% } %>
+                                            <a class="pull-right" href=<%="/reminder/" + reminderItem.id %>>View</a>
+            </li>
+            <% }) %>
+    </ul>
+
+    <!-- Friends' reminders -->
+
+    <% if(friendIDs.length > 0){%>
+        <br><br>
+        <h2 class="page-header">My Friends' Reminders</h2>
+        <% }%>
+
+
+            <ul class="list-group">
+
+                <% database.forEach((friend)=> { %>
+                    <% if (friendIDs.includes(String(friend.id))) {%>
+                        <h3 class="page-header">
+                            <%=friend.name %>
+                        </h3>
+                        <% friend.reminders.forEach(reminderItem => { %>
+                            <li class="list-group-item">
+                                <img src=<%=reminderItem.image_url %> alt=
+                                <%= reminderItem.title %> style="width:50px; height:50px;">
+
+                                    <strong><%= reminderItem.title %>: </strong>
+                                    <%= reminderItem.description %>
+                                        || Date&Time:
+                                        <%= reminderItem.date %>
+                                            || Tags: (
+                                            <%= reminderItem.tags %>) || Completed:
+                                                <% if (reminderItem.completed == true) { %>
+                                                    <span class="badge badge-success">True</span>
+                                                    <% } else if (reminderItem.completed == false) { %>
+                                                        <span class="badge badge-danger">False</span>
+                                                        <% } %>
+                            </li>
+
+
+                            <% });%>
+                                <% }; %>
+                                    <% }) %>
+            </ul>
+
+
+</div>
