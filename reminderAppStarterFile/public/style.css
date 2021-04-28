@@ -155,3 +155,50 @@ div.cloudy {
 div.rainy {
     background-image: linear-gradient(to right top, #637c7b, #718e8c, #7ea09e, #8db2b0, #9bc5c3);
 }
+
+
+.calendar-wrapper {
+  margin: 2rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background-color: aliceblue;
+  overflow: hidden;
+}
+
+.calendar-picture {
+  height: 10rem;
+  padding: 20px;
+  color: #fff;
+  background: url("https://cardinalwxservice.com/wp-content/uploads/2020/03/Rain.jpg") no-repeat center / cover;
+}
+
+
+.calendar {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(25px, 1fr));
+  grid-auto-rows: 3rem;
+  grid-gap: 10px;
+  box-sizing: border-box;
+  color: #262626;
+  font-size: 1.2rem;
+  /* align-items: center;
+  justify-content: center; */
+}
+
+.calendar-day, .calendar-number {
+  text-align: center;
+}
+
+.calendar-day:nth-child(7) {
+  color: red;
+}
+
+.calendar-number:nth-child(7) {
+  color: red;
+}
+
+.current-day {
+  color: blue;
+  
+}

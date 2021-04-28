@@ -43,6 +43,35 @@
             <% }) %>
     </ul>
 
+    <!-- Event Calendar -->
+
+    <div class="calendar-wrapper">
+        <div class="calendar-picture">
+            <h2><%= calendarData.today.month %> <%= calendarData.today.date %></h2>
+            <h4><%= calendarData.today.weekDay %></h4>
+        </div>
+        <div class="calendar">
+            <% for (weekDay of calendarData.weekDays) { %>
+                <div class="calendar-day"><%= weekDay %></div>
+                <% } %>
+
+            <% for (let i=0; i<calendarData.firstOfMonthDay; i++) { %>
+                <div class="calendar-number"></div>
+                <% } %>
+                
+            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { %>
+
+                <% if (i === Number(calendarData.today.date)) { %>
+                <div class="calendar-number current-day"><%= i %></div>
+                    <% } else { %>
+                    <div class="calendar-number"><%= i %></div>
+                <% } %>
+
+            <% } %>
+
+        </div>
+    </div>
+    
     <!-- Friends' reminders -->
 
     <% if(friendIDs.length > 0){%>
