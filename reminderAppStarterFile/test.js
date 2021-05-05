@@ -1,8 +1,10 @@
-var request = require('supertest');
-var app = require('./index.js');
+const request = require('supertest');
+const app = require('./index.js');
 
+
+// testing / route (landing page)
 describe('GET /', function(){
-    it('respond with landing page', function(done){
+    it('respond with landing page status 200', function(done){
         request(app)
             .get('/')
             .set('Accept', 'application/html')
