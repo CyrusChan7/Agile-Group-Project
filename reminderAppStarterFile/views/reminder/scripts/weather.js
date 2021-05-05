@@ -13,18 +13,18 @@ function weatherBalloon(cityName) {
 function drawWeather(d) {
     const celcius = Math.round(parseFloat(d.main.temp) - 273.15);
     const description = d.weather[0].description;
-    const weather_area = document.getElementById("weather");
+    const calendar_picture = document.querySelector(".calendar-picture");
 
     document.getElementById('description').innerHTML = description;
     document.getElementById('temp').innerHTML = celcius + '&deg;';
     document.getElementById('location').innerHTML = d.name;
 
     if (description.indexOf('rain') > 0) {
-        weather_area.classList.add("rainy");
+        calendar_picture.classList.add("rainy");
     } else if (description.indexOf('cloud') > 0) {
-        weather_area.classList.add("cloudy");
+        calendar_picture.classList.add("cloudy");
     } else if (description.indexOf('sunny') > 0) {
-        weather_area.classList.add("sunny");
+        calendar_picture.classList.add("sunny");
     }
 }
 

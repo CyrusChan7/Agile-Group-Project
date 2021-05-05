@@ -1,21 +1,62 @@
 
-<div id="weather">
-    <div id="description"></div>
+<!-- <div id="weather"> -->
+    <!-- <div id="description"></div>
     <h4 id="temp"></h1>
-    <div id="location"></div>
-</div>
+    <div id="location"></div> -->
+<!-- </div> -->
 
 <script onload="pageLoaded();" src="scripts/weather"></script>
 
 <!-- End of weather API code -->
 
 <div class="container">
-    <h1>
+    <h1 class="user-name">
         <img src=<%=user.avatar %>>
         <%= user.name %>
     </h1>
-    <h1 class="page-header">Reminders</h1>
+    
 
+    <!-- Event Calendar -->
+
+    <div class="calendar-wrapper">
+        <div class="calendar-picture">
+            <div class="date-location">
+                <h2><%= calendarData.today.month %> <%= calendarData.today.date %></h2>
+                <h4><%= calendarData.today.weekDay %></h4>
+                <h4 id="location"></h4>
+            </div>
+            
+            <div class="weather">
+                <h2 id="temp"></h2>
+                <h4 id="description"></h4>
+            </div>
+            
+        </div>
+
+        <div class="calendar">
+            <% for (weekDay of calendarData.weekDays) { %>
+                <div class="calendar-day"><%= weekDay %></div>
+                <% } %>
+
+            <% for (let i=0; i<calendarData.firstOfMonthDay; i++) { %>
+                <div class="calendar-number"></div>
+                <% } %>
+                
+            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { %>
+
+                <% if (i === Number(calendarData.today.date)) { %>
+                <div class="calendar-number current-day"><%= i %></div>
+                    <% } else { %>
+                    <div class="calendar-number"><%= i %></div>
+                <% } %>
+
+            <% } %>
+
+        </div>
+    </div>
+
+
+    <h1 class="page-header">Reminders</h1>
     <form action="/reminders/search" method="GET">
         <input type="text" name="search" id="search" placeholder="Search for reminder names" class="search" />
         <button class="search-btn" type="submit">Search</button>
@@ -43,34 +84,7 @@
             <% }) %>
     </ul>
 
-    <!-- Event Calendar -->
-
-    <div class="calendar-wrapper">
-        <div class="calendar-picture">
-            <h2><%= calendarData.today.month %> <%= calendarData.today.date %></h2>
-            <h4><%= calendarData.today.weekDay %></h4>
-        </div>
-        <div class="calendar">
-            <% for (weekDay of calendarData.weekDays) { %>
-                <div class="calendar-day"><%= weekDay %></div>
-                <% } %>
-
-            <% for (let i=0; i<calendarData.firstOfMonthDay; i++) { %>
-                <div class="calendar-number"></div>
-                <% } %>
-                
-            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { %>
-
-                <% if (i === Number(calendarData.today.date)) { %>
-                <div class="calendar-number current-day"><%= i %></div>
-                    <% } else { %>
-                    <div class="calendar-number"><%= i %></div>
-                <% } %>
-
-            <% } %>
-
-        </div>
-    </div>
+    
     
     <!-- Friends' reminders -->
 

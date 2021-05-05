@@ -146,7 +146,7 @@ footer.footer {
   margin: auto;
 }
 
-div.sunny {
+/* div.sunny {
     background-image: linear-gradient(to right top, #ff4e50, #ff713e, #ff932b, #ffb41d, #f9d423);
 }
 div.cloudy {
@@ -154,11 +154,16 @@ div.cloudy {
 }
 div.rainy {
     background-image: linear-gradient(to right top, #637c7b, #718e8c, #7ea09e, #8db2b0, #9bc5c3);
+} */
+
+
+.user-name {
+  margin: 1rem 0rem;
 }
 
 
 .calendar-wrapper {
-  margin: 2rem;
+  margin-bottom: 2rem;
   box-sizing: border-box;
   border-radius: 8px;
   background-color: aliceblue;
@@ -169,9 +174,27 @@ div.rainy {
   height: 10rem;
   padding: 20px;
   color: #fff;
-  background: url("https://cardinalwxservice.com/wp-content/uploads/2020/03/Rain.jpg") no-repeat center / cover;
+  
 }
 
+.calendar-picture.sunny {
+  background: url("https://cdn.aarp.net/content/dam/aarp/home_garden/livable_communities/2011-12/740-las-cruces-new-mexico-retire.jpg") no-repeat center / cover;
+}
+.calendar-picture.cloudy {
+  background: url("https://www.vmcdn.ca/f/files/sudbury/images/LocalImages/080421-cloudy-pexels-andrew-beatson-3742711.jpg") no-repeat center / cover;
+}
+.calendar-picture.rainy {
+  background: url("https://marshallslocuminn.com/wp-content/uploads/2015/09/creative-rain_01-650x350.jpg") no-repeat center / cover;
+}
+
+.date-location{
+  float: left;
+}
+
+.weather {
+  float: right;
+  text-align: end;
+}
 
 .calendar {
   padding: 1rem;
