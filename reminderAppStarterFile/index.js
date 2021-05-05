@@ -89,3 +89,5 @@ app.listen(3001, function() {
         "Server running. Visit: localhost:3001/reminders in your browser 🚀"
     );
 });
+
+module.exports = app
