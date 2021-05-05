@@ -178,13 +178,13 @@ div.rainy {
 }
 
 .calendar-picture.sunny {
-  background: url("https://cdn.aarp.net/content/dam/aarp/home_garden/livable_communities/2011-12/740-las-cruces-new-mexico-retire.jpg") no-repeat center / cover;
+  background: url("/images/sunny.jpg") no-repeat center / cover;
 }
 .calendar-picture.cloudy {
-  background: url("https://www.vmcdn.ca/f/files/sudbury/images/LocalImages/080421-cloudy-pexels-andrew-beatson-3742711.jpg") no-repeat center / cover;
+  background: url("/images/cloudy.jpg") no-repeat center / cover;
 }
 .calendar-picture.rainy {
-  background: url("https://marshallslocuminn.com/wp-content/uploads/2015/09/creative-rain_01-650x350.jpg") no-repeat center / cover;
+  background: url("/images/rainy.jpg") no-repeat center / cover;
 }
 
 .date-location{

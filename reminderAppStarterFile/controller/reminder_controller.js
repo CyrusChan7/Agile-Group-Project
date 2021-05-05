@@ -1,6 +1,7 @@
 let database = require("../database").Database;
 const fetch = require("node-fetch");
-let { calendarData } = require("../views/reminder/scripts/calendar")
+const { calendarData } = require("../views/reminder/scripts/calendar")
+
 
 let remindersController = {
     // List out all the reminder
@@ -10,7 +11,8 @@ let remindersController = {
             reminders: req.user.reminders,
             database: database,
             friendIDs: req.user.friends.friendID,
-            calendarData
+            calendarData,
+
         });
     },
 
