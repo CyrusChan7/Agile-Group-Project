@@ -38,9 +38,9 @@
                 <div class="calendar-day"><%= weekDay %></div>
                 <% } %>
 
-            <% for (let i=0; i<calendarData.firstOfMonthDay; i++) { %>
+            <% let boxCount = 0; for (let i=0; i<calendarData.firstOfMonthDay; i++) { %>
                 <div class="calendar-number"></div>
-                <% } %>
+                <% boxCount++ } %>
                 
             <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { %>
 
@@ -50,8 +50,10 @@
                     <div class="calendar-number"><%= i %></div>
                 <% } %>
 
-            <% } %>
-
+            <% boxCount++ } %>
+            <% while (boxCount%7 !== 0) { %>
+                <div class="calendar-number"></div>
+                <% boxCount++ } %>
         </div>
     </div>
 

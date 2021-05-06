@@ -3,6 +3,7 @@ const express = require("express");
 const { getUserByEmailIdAndPassword } = require("./userController");
 const path = require("path");
 const { default: fetch } = require("node-fetch");
+const { calendarData } = require("../views/reminder/scripts/calendar")
 
 
 let authController = {
@@ -73,7 +74,8 @@ let authController = {
             user: req.user,
             reminders: req.user.reminders,
             database: database.Database,
-            friendIDs: req.user.friends.friendID
+            friendIDs: req.user.friends.friendID,
+            calendarData,
         });
     }
 };
