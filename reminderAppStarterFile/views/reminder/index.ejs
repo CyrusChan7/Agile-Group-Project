@@ -71,9 +71,9 @@
     </div>
 
 
-    <h1 class="page-header">Reminders</h1>
+    <h1 class="page-header">Events</h1>
     <form action="/reminders/search" method="GET">
-        <input type="text" name="search" id="search" placeholder="Search for reminder names" class="search" />
+        <input type="text" name="search" id="search" placeholder="Search for events" class="search" />
         <button class="search-btn" type="submit">Search</button>
     </form>
 
@@ -86,13 +86,13 @@
 
                     <strong><%= reminderItem.title %>: </strong>
                     <%= reminderItem.description %>
-                        || Date&Time:
+                        || Date:
                         <%= reminderItem.date %>
-                            || Tags: (<%= reminderItem.tags %>) || Completed:
+                            || Tags: (<%= reminderItem.tags %>) || Importance:
                                 <% if (reminderItem.completed == true) { %>
-                                    <span class="badge badge-success">True</span>
+                                    <span class="badge badge-success">Low</span>
                                     <% } else if (reminderItem.completed == false) { %>
-                                        <span class="badge badge-danger">False</span>
+                                        <span class="badge badge-danger">Important</span>
                                         <% } %>
                                             <a class="pull-right" href=<%="/reminder/" + reminderItem.id %>>View</a>
             </li>
@@ -105,7 +105,7 @@
 
     <% if(friendIDs.length > 0){%>
         <br><br>
-        <h2 class="page-header">My Friends' Reminders</h2>
+        <h2 class="page-header">My Friends' Events</h2>
         <% }%>
 
 
