@@ -34,7 +34,7 @@ let remindersController = {
                 user: req.user,
                 reminders: req.user.reminders,
                 database: database,
-                friendIDs: req.user.friends.friendID
+                friendIDs: req.user.friends.friendID 
             });
         }
     },
@@ -56,8 +56,8 @@ let remindersController = {
             user: req.user,
             reminders: searchResultsDatabase,
             database: database,
-            friendIDs: req.user.friends.friendID
-            calendarData
+            friendIDs: req.user.friends.friendID,
+            // calendarData // remove
         });
     },
 
