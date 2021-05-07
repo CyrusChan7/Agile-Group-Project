@@ -57,11 +57,7 @@ let remindersController = {
             reminders: searchResultsDatabase,
             database: database,
             friendIDs: req.user.friends.friendID,
-<<<<<<< HEAD
-            // calendarData // remove
-=======
             calendarData,
->>>>>>> ab823755cc92d397094e972e25df1c531de303bc
         });
     },
 
