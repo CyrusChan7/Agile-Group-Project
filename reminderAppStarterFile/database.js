@@ -18,6 +18,7 @@ let Database = [{
                 completed: true,
                 image_url: "/Reminder.svg",
                 subtasks: [],
+				date: "05/06/2021",
             }
         ],
         avatar: `https://avatars.abstractapi.com/v1/?api_key=${process.env.Abstractapi_CLIENT_ID}&name=Cindy&image_size=60&char_limit=2&background_color=ea3374&font_color=ffffff&is_rounded=true&is_uppercase=true`,
