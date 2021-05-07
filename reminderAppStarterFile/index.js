@@ -25,6 +25,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.json());
 // End of Session code
 
 app.use(express.static(path.join(__dirname, "public")));

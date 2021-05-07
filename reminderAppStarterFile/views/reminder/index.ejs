@@ -5,7 +5,7 @@
     <div id="location"></div> -->
 <!-- </div> -->
 
-<script onload="pageLoaded();" src="scripts/weather"></script>
+<script onload="pageLoaded();" src="../scripts/weather"></script>
 
 <!-- End of weather API code -->
 
@@ -38,20 +38,35 @@
                 <div class="calendar-day"><%= weekDay %></div>
                 <% } %>
 
-            <% for (let i=0; i<calendarData.firstOfMonthDay; i++) { %>
+            <% let boxCount = 0; for (let i=0; i<calendarData.firstOfMonthDay; i++) { %>
                 <div class="calendar-number"></div>
-                <% } %>
+                <% boxCount++ } %>
                 
             <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { %>
 
                 <% if (i === Number(calendarData.today.date)) { %>
-                <div class="calendar-number current-day"><%= i %></div>
+                <div class="calendar-number current-day"><%= i %>
                     <% } else { %>
-                    <div class="calendar-number"><%= i %></div>
+                    <div class="calendar-number"><%= i %>
                 <% } %>
 
-            <% } %>
 
+                <% reminders.forEach(function (reminderItem) { %>
+                    <% let date = new Date(reminderItem.date) %>
+                    <% let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ') %>
+                    <% if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.today.month + i + calendarData.today.year) { %>
+                        <br>
+                        <a href="/reminder/<%= reminderItem.id%>"><%= reminderItem.title %></a>
+                    <% }})%>
+                </div>
+
+
+
+
+            <% boxCount++ } %>
+            <% while (boxCount%7 !== 0) { %>
+                <div class="calendar-number"></div>
+                <% boxCount++ } %>
         </div>
     </div>
 

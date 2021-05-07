@@ -57,15 +57,23 @@ let remindersController = {
             reminders: searchResultsDatabase,
             database: database,
             friendIDs: req.user.friends.friendID,
+<<<<<<< HEAD
             // calendarData // remove
+=======
+            calendarData,
+>>>>>>> ab823755cc92d397094e972e25df1c531de303bc
         });
     },
 
     // Create a new reminder
     create: async(req, res) => {
         const tempSubtasks = req.body.subtasks.split(",");
+        let idNum = Number(1)
+        if (req.user.reminders.length != 0){
+            idNum = Number(req.user.reminders[req.user.reminders.length -1].id) +1;
+        }
         const reminder = {
-            id: req.user.reminders.length + 1,
+            id: idNum,
             title: req.body.title,
             description: req.body.description,
             completed: false,
