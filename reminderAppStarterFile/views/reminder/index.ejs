@@ -123,14 +123,13 @@
 
                                     <strong><%= reminderItem.title %>: </strong>
                                     <%= reminderItem.description %>
-                                        || Date&Time:
+                                        || Date:
                                         <%= reminderItem.date %>
-                                            || Tags: (
-                                            <%= reminderItem.tags %>) || Completed:
+                                            || Tags: (<%= reminderItem.tags %>) || Importance:
                                                 <% if (reminderItem.completed == true) { %>
-                                                    <span class="badge badge-success">True</span>
+                                                    <span class="badge badge-success">Low</span>
                                                     <% } else if (reminderItem.completed == false) { %>
-                                                        <span class="badge badge-danger">False</span>
+                                                        <span class="badge badge-danger">Important</span>
                                                         <% } %>
                             </li>
 
