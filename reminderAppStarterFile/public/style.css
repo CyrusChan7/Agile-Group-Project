@@ -205,8 +205,8 @@ div.rainy {
   box-sizing: border-box;
   color: #262626;
   font-size: 1.2rem;
-  /* align-items: center;
-  justify-content: center; */
+  align-items: center;
+  justify-content: center;
 }
 
 .calendar-day, .calendar-number {
@@ -224,5 +224,28 @@ div.rainy {
 
 .current-day {
   color: blue;
-  
+  box-shadow: 0px 0px 0px 8px rgba(138, 202, 231, 0.589); 
+  position: relative;
+}
+
+.search-btn {
+  border: none;
+  border-radius: 25px;
+}
+
+.search {
+border-radius: 15px;
+padding: 5px;
+background-color: powderblue;
+opacity: 55%;
+}
+
+.list-group {
+  margin: 20px;
+
+}
+
+li.list-group-item {
+  background-color: powderblue;
+  opacity: 90%;
 }
