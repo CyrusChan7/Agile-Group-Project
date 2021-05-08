@@ -1,6 +1,7 @@
 const app = require("./index.js");
 const request = require("supertest");
 const server = request.agent(app);
+//const database = require("./database.js").Database
 
 function loginUser() {
     return function (done) {
@@ -220,3 +221,26 @@ describe("Test routes that require authentication while authenticated", function
 
 
 });
+
+
+/*
+function mockEventCreation() {
+  return server
+      .post("/reminder/")
+      .send({title: "feed the dog", description: "feed her before tomorrow at noon", completed: false, image_url: "/Reminder.svg", subtasks: [], date: "05/20/2021", tags: "Delicious food"})
+      .expect(function (){return database.length == 300})
+      .expect(302)
+      //.expect("Location", "/login")
+      //.end(onResponse);
+      //done();
+
+  };
+
+describe("Mock event creation", function () {
+  it("test ability to log a user in", loginUser());
+  it("/reminder/", mockEventCreation);
+
+
+
+});
+*/
