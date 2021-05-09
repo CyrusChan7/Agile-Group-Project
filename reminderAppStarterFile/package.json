@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "mocha test_routes.js --exit",
+    "test-events": "jest --forceExit",
     "start": "nodemon"
   },
   "repository": {

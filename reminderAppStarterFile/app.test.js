@@ -4,7 +4,6 @@ const server = request.agent(app);
 const database = require("./database.js").Database;
 
 
-
 function loginUser() {
   return function (done) {
     server
@@ -18,12 +17,12 @@ function loginUser() {
 
 describe("Mock event creation", function () {
   it("test ability to log a user in", loginUser());
-  it("/reminder/", function (done) {
+  it("mock event creation", function (done) {
     server
       .post("/reminder/")
       .send({
         title: "feed the dog",
-        description: "feed her before tomorrow at noon",
+        description: "feed her before tomorrow",
         completed: false,
         image_url: "/Reminder.svg",
         subtasks: [],
@@ -32,7 +31,7 @@ describe("Mock event creation", function () {
       })
       .then((res) => database)
       .then((db) => {
-        console.log(db[0].reminders);
+        //console.log(db[0].reminders);
         expect(db[0].reminders.length).toEqual(3);
       })
       .then(() => done());
