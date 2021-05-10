@@ -1,6 +1,7 @@
 const app = require("./index.js");
 const request = require("supertest");
 const server = request.agent(app);
+//const database = require("./database.js").Database
 
 function loginUser() {
     return function (done) {
@@ -220,3 +221,5 @@ describe("Test routes that require authentication while authenticated", function
 
 
 });
+
+

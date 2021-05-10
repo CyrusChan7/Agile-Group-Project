@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="page-header">Reminders</h1>
+    <h1 class="page-header">Events</h1>
 
     <ul class="list-group">
         <li class="list-group-item">
@@ -8,26 +8,26 @@
             <%= reminderItem.title %> style="width:100px; height:100px;">
 
                 <h4>
-                    <p>Reminder description:</p>
+                    <p>Event Details:</p>
                     <%= reminderItem.description %>
                 </h4>
                 <h4>
-                    <p>Reminder tags:</p>
+                    <p>Event Tags:</p>
                     <span class="label label-success"><%= reminderItem.tags %></span>
                 </h4>
                 <h4>
-                    <p>Reminder date:</p>
+                    <p>Event Date:</p>
                     <%= reminderItem.date %>
                 </h4>
                 <h4>
-                    <p>Reminder completed:</p>
+                    <p>Importance:</p>
                     <% if (reminderItem.completed == true) { %>
-                        <span class="label label-success">True</span>
+                        <span class="badge badge-success">Low</span>
                         <% } else if (reminderItem.completed == false) { %>
-                            <span class="label label-danger">False</span>
+                            <span class="badge badge-danger">Important</span>
                             <% } %>
                 </h4>
-                <h4>Reminder subtasks:
+                <h4>Minievents:
                     <ul>
                         <% for(let i = 0; i < reminderItem.subtasks.length; i++) {%>
                             <% if (!(reminderItem.subtasks[i] === "")) {%>
