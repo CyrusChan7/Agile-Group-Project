@@ -42,12 +42,15 @@
                 <div class="calendar-number"></div>
                 <% boxCount++ } %>
                 
-            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { %>
+            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { 
+                let dateString = calendarData.today.year + String(calendarData.today.monthNum).padStart(2, '0') + String(i).padStart(2, '0') %>
 
                 <% if (i === Number(calendarData.today.date)) { %>
-                <div class="calendar-number current-day"><%= i %>
+                <div class="calendar-number current-day">
+                    <a href=<%="/reminders/" + dateString %>> <%= i %> </a>
                     <% } else { %>
-                    <div class="calendar-number"><%= i %>
+                    <div class="calendar-number">
+                        <a href=<%="/reminders/" + dateString %>> <%= i %> </a>
                 <% } %>
 
 
