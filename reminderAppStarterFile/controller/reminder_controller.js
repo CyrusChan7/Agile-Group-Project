@@ -1,4 +1,5 @@
 let database = require("../database").Database;
+let update = require("../database").writeJSON;
 const fetch = require("node-fetch");
 const { calendarData } = require("../views/reminder/scripts/calendar");
 
@@ -98,7 +99,7 @@ let remindersController = {
 
       req.user.reminders.push(reminder);
     }
-
+    update()
     res.redirect("/reminders");
   },
 
@@ -108,6 +109,7 @@ let remindersController = {
     const searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
+    update()
     res.render("reminder/edit", { reminderItem: searchResult });
   },
 
@@ -127,6 +129,7 @@ let remindersController = {
       // console.log(`DEBUG update tempSubtasks is: ${tempSubtasks}`)
       // console.log(typeof tempSubtasks);
     });
+    update()
     res.redirect("/reminder/" + req.params.id);
   },
 
@@ -157,7 +160,7 @@ let remindersController = {
     if (index >= 0) {
       req.user.reminders.splice(index, 1);
     }
-
+    update()
     res.redirect("/reminders");
   },
 

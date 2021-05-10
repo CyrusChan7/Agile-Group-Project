@@ -1,0 +1,57 @@
+[
+	{
+		"id": 1,
+		"name": "Cindy",
+		"email": "123@gmail.com",
+		"password": "123",
+		"reminders": [
+			{
+				"id": "1",
+				"title": "Big Exam",
+				"description": "help megg",
+				"completed": false,
+				"image_url": "/Reminder.svg",
+				"subtasks": [],
+				"date": "05/21/2021",
+				"tags": "School"
+			},
+			{
+				"id": "2",
+				"title": "Music Festival",
+				"description": "we rowdy",
+				"completed": true,
+				"image_url": "/Reminder.svg",
+				"subtasks": [],
+				"date": "05/16/2021",
+				"tags": "Big fun"
+			}
+		],
+		"avatar": "https://avatars.abstractapi.com/v1/?api_key=861a81cdc8b34deaa70d2c267e787c65&name=Cindy&image_size=60&char_limit=2&background_color=335eea&font_color=ffffff&is_rounded=true&is_uppercase=true",
+		"friends": {
+			"friendID": []
+		}
+	},
+	{
+		"id": 2,
+		"name": "Alex",
+		"email": "alex123@gmail.com",
+		"password": "alex123!",
+		"reminders": [
+			{
+				"id": 1,
+				"title": "Cat Park",
+				"description": "big chonk at big park",
+				"completed": false,
+				"image_url": "/Reminder.svg",
+				"subtasks": [],
+				"date": "05/12/2021",
+				"tags": "hehexd"
+			}
+		],
+		"avatar": "https://avatars.abstractapi.com/v1/?api_key=undefined&name=Alex&image_size=60&char_limit=2&background_color=0cbf18&font_color=ffffff&is_rounded=true&is_uppercase=true",
+		"friends": {
+			"friendID": []
+		}
+	}
+	
+]
