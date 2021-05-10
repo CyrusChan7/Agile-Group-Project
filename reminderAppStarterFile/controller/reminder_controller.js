@@ -171,6 +171,28 @@ let remindersController = {
       database: database,
     });
   },
+
+  listEventOfTheDay: (req, res) => {
+    const dateString = req.params.date
+    const year = dateString.slice(0,4)
+    const month = dateString.slice(4,6)
+    const date = dateString.slice(6,8)
+    const reminders = req.user.reminders
+
+    const reminderOfTheDay = reminders.filter((reminder) => {
+      let reminderDate = new Date(reminder.date)
+      let dateStrTokens = reminderDate.toLocaleString('en-GB', {dateStyle: "short"}).split('/')
+      let reminderDateString = dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[0]
+      
+      return reminderDateString === dateString
+      
+    })
+
+    res.render("reminder/events-of-the-day", {
+      reminders: reminderOfTheDay
+    });
+  },
+
 };
 
 module.exports = remindersController;

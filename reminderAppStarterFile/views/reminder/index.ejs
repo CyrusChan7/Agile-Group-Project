@@ -42,22 +42,26 @@
                 <div class="calendar-number"></div>
                 <% boxCount++ } %>
                 
-            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { %>
+            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { 
+                let dateString = calendarData.today.year + String(calendarData.today.monthNum).padStart(2, '0') + String(i).padStart(2, '0') %>
 
                 <% if (i === Number(calendarData.today.date)) { %>
-                <div class="calendar-number current-day"><%= i %>
-                    <% } else { %>
-                    <div class="calendar-number"><%= i %>
+                <div class="calendar-number current-day">
+                    <a href=<%="/reminders/" + dateString %>> <%= i %> </a>
+                <% } else { %>
+                    <div class="calendar-number">
+                        <a href=<%="/reminders/" + dateString %>> <%= i %> </a>
                 <% } %>
 
+                    <div class="events">
+                        <% reminders.forEach(function (reminderItem) { %>
+                            <% let date = new Date(reminderItem.date) %>
+                            <% let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ') %>
+                            <% if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.today.month + i + calendarData.today.year) { %>
+                                <a href="/reminder/<%= reminderItem.id%>"><%= reminderItem.title %></a>
+                            <% }})%>
+                    </div>
 
-                <% reminders.forEach(function (reminderItem) { %>
-                    <% let date = new Date(reminderItem.date) %>
-                    <% let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ') %>
-                    <% if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.today.month + i + calendarData.today.year) { %>
-                        <br>
-                        <a href="/reminder/<%= reminderItem.id%>"><%= reminderItem.title %></a>
-                    <% }})%>
                 </div>
 
 
@@ -68,10 +72,10 @@
                 <div class="calendar-number"></div>
                 <% boxCount++ } %>
         </div>
-    </div>
+        </div>
 
 
-    <h1 class="page-header">Events</h1>
+    <h1 class="events-header">Events</h1>
     <form action="/reminders/search" method="GET">
         <input type="text" name="search" id="search" placeholder="Search for events" class="search" />
         <button class="search-btn" type="submit">Search</button>

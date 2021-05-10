@@ -5,6 +5,7 @@ let todayStrTokens = today.toLocaleString('en-GB', {dateStyle: "full"}).split(' 
 let todayObj = {
     year: todayStrTokens[3],
     month: todayStrTokens[2],
+    monthNum: today.getMonth() + 1,
     date: todayStrTokens[1],
     weekDay: todayStrTokens[0].slice(0,-1)
 }

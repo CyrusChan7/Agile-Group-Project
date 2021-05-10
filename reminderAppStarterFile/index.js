@@ -39,6 +39,8 @@ app.set("view engine", "ejs"); // Set file to use ejs
 // Routes start here
 app.get("/reminders", ensureAuthenticated, reminderController.list);
 
+app.get("/reminders/:date", ensureAuthenticated, reminderController.listEventOfTheDay);
+
 app.get("/reminder/new", ensureAuthenticated, reminderController.new);
 
 app.get("/reminder/friends", ensureAuthenticated, reminderController.listFriends);
