@@ -184,7 +184,7 @@ let remindersController = {
       return reminderDateString === dateString
       
     })
-    console.log(reminderOfTheDay)
+
     res.render("reminder/events-of-the-day", {
       reminders: reminderOfTheDay
     });
