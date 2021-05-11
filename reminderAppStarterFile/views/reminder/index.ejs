@@ -57,8 +57,13 @@
                         <% reminders.forEach(function (reminderItem) { %>
                             <% let date = new Date(reminderItem.date) %>
                             <% let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ') %>
-                            <% if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.today.month + i + calendarData.today.year) { %>
-                                <a href="/reminder/<%= reminderItem.id%>"><%= reminderItem.title %></a>
+                            <% if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.today.month + i + calendarData.today.year) {
+                                let reminderTitle = reminderItem.title
+                                if (reminderTitle.length > 15) {
+                                    reminderTitle = reminderTitle.slice(0,12) + '...'
+                                } %>
+                                
+                                <a href="/reminder/<%= reminderItem.id%>"><%= reminderTitle %></a>
                             <% }})%>
                     </div>
 
