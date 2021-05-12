@@ -18,6 +18,7 @@ function loginUser() {
 describe("Mock event creation", function () {
   it("test ability to log a user in", loginUser());
   it("mock event creation", function (done) {
+    const reminderLen = database[0].reminders.length
     server
       .post("/reminder/")
       .send({
@@ -25,14 +26,14 @@ describe("Mock event creation", function () {
         description: "feed her before tomorrow",
         completed: false,
         image_url: "/Reminder.svg",
-        subtasks: [],
+        subtasks: "",
         date: "05/20/2021",
         tags: "Delicious food",
       })
       .then((res) => database)
       .then((db) => {
         //console.log(db[0].reminders);
-        expect(db[0].reminders.length).toEqual(3);
+        expect(db[0].reminders.length).toEqual(reminderLen + 1);
       })
       .then(() => done());
   });
