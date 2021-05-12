@@ -62,8 +62,9 @@ let remindersController = {
 
   // Create a new reminder
   create: async (req, res) => {
-    // const tempSubtasks = req.body.subtasks.split(",");
-    const tempSubtasks = [];
+    // const tempSubtasks = [];
+    const tempSubtasks = req.body.subtasks.split(",");
+
     let idNum = Number(1);
     if (req.user.reminders.length != 0) {
       idNum = Number(req.user.reminders[req.user.reminders.length - 1].id) + 1;
