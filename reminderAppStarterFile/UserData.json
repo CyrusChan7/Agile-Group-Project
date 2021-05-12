@@ -27,7 +27,7 @@
 			},
 			{
 				"id": 3,
-				"title": "12irudfcskdjvn34fu1no24euwdsjvn2",
+				"title": "12irudfcskdj...",
 				"description": "asda",
 				"completed": false,
 				"image_url": "/Reminder.svg",
@@ -102,11 +102,25 @@
 					""
 				],
 				"date": "05/20/2021"
+			},
+			{
+				"id": 10,
+				"title": "banana",
+				"description": "eat banana",
+				"completed": false,
+				"image_url": "https://images.unsplash.com/photo-1614822283015-67c426d4e562?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA4NDc2MTg&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": "",
+				"subtasks": [
+					""
+				],
+				"date": "2021-05-21 12:26"
 			}
 		],
 		"avatar": "https://avatars.abstractapi.com/v1/?api_key=861a81cdc8b34deaa70d2c267e787c65&name=Cindy&image_size=60&char_limit=2&background_color=335eea&font_color=ffffff&is_rounded=true&is_uppercase=true",
 		"friends": {
-			"friendID": []
+			"friendID": [
+				"3"
+			]
 		}
 	},
 	{
