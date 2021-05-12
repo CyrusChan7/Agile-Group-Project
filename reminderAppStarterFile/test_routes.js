@@ -123,7 +123,39 @@ describe("Test routes without being authenticated", function () {
             done();
           });
       });
-  
+      
+      it("access /reminders/20210511 (expect 302 as we are not authenticated)", function (done) {
+        server
+          .get("/reminders/20210511")
+          .expect(302)
+          .end(function (err, res) {
+            if (err) return done(err);
+            //console.log(res.text);
+            done();
+          });
+      });
+
+      it("access /reminders/20210630 (expect 302 as we are not authenticated)", function (done) {
+        server
+          .get("/reminders/20210630")
+          .expect(302)
+          .end(function (err, res) {
+            if (err) return done(err);
+            //console.log(res.text);
+            done();
+          });
+      });
+
+      it("access /reminders/20210712 (expect 302 as we are not authenticated)", function (done) {
+        server
+          .get("/reminders/20210712")
+          .expect(302)
+          .end(function (err, res) {
+            if (err) return done(err);
+            //console.log(res.text);
+            done();
+          });
+      });
 });
 
 describe("Test routes that require authentication while authenticated", function () {
@@ -219,6 +251,38 @@ describe("Test routes that require authentication while authenticated", function
       });
   });
 
+  it("access /reminders/20210511 (expect 200 as we are authenticated)", function (done) {
+    server
+      .get("/reminders/20210511")
+      .expect(200)
+      .end(function (err, res) {
+        if (err) return done(err);
+        //console.log(res.text);
+        done();
+      });
+  });
+
+  it("access /reminders/20210630 (expect 200 as we are authenticated)", function (done) {
+    server
+      .get("/reminders/20210630")
+      .expect(200)
+      .end(function (err, res) {
+        if (err) return done(err);
+        //console.log(res.text);
+        done();
+      });
+  });
+
+  it("access /reminders/20210712 (expect 200 as we are authenticated)", function (done) {
+    server
+      .get("/reminders/20210712")
+      .expect(200)
+      .end(function (err, res) {
+        if (err) return done(err);
+        //console.log(res.text);
+        done();
+      });
+  });
 
 });
 
