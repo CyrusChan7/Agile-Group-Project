@@ -21,14 +21,22 @@
     <div class="calendar-wrapper">
         <div class="calendar-picture">
             <div class="date-location">
-                <h2><%= calendarData.today.month %> <%= calendarData.today.date %> </h2>
+                <!-- Only displays date if on current month -->
+                <% if ( String(calendarData.today.realDate.getMonth()) + ',' + String(calendarData.today.realDate.getFullYear()) === String(calendarData.today.shownDate.getMonth()) + ',' + String(calendarData.today.shownDate.getFullYear())) { %>
+                    <h2><%= calendarData.today.month %> <%= calendarData.today.date %>, <%= calendarData.today.year %></h2>
+                <% } else { %>
+                    <h2><%= calendarData.today.month %> <%= calendarData.today.year %></h2>
+                <% } %>
                 <h4><%= calendarData.today.weekDay %></h4>
                 <h4 id="location"></h4>
             </div>
             
             <div class="weather">
-                <h2 id="temp"></h2>
+                <h2 style="display: inline-block;" id="temp"></h2 > <h2 style="display: inline-block;">C</h2>
                 <h4 id="description"></h4>
+                <a href="/prevMonth" class="btn btn-primary"> PREV MONTH </a>
+                <a href="/resetMonth" class="btn btn-primary"> RESET MONTH </a>
+                <a href="/nextMonth" class="btn btn-primary"> NEXT MONTH </a>
             </div>
             
         </div>
@@ -42,25 +50,38 @@
                 <div class="calendar-number"></div>
                 <% boxCount++ } %>
                 
-            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { %>
-
-                <% if (i === Number(calendarData.today.date)) { %>
-                <div class="calendar-number current-day"><%= i %>
-                    <% } else { %>
-                    <div class="calendar-number"><%= i %>
+            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { 
+                let dateString = calendarData.today.year + String(calendarData.today.monthNum).padStart(2, '0') + String(i).padStart(2, '0') %>
+                <% if (i === Number(calendarData.today.date) && String(calendarData.today.realDate.getMonth()) + ',' + String(calendarData.today.realDate.getFullYear()) === String(calendarData.today.shownDate.getMonth()) + ',' + String(calendarData.today.shownDate.getFullYear())) { %>
+                <div class="calendar-number current-day">
+                    <a href=<%="/reminders/" + dateString %>> <%= i %> </a>
+                <% } else { %>
+                    <div class="calendar-number">
+                        <a href=<%="/reminders/" + dateString %>> <%= i %> </a>
                 <% } %>
 
+                    <div class="events">
 
-                <% reminders.forEach(function (reminderItem) { %>
-                    <% let date = new Date(reminderItem.date) %>
-                    <% let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ') %>
-                    <% if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.today.month + i + calendarData.today.year) { %>
-                        <br>
-                        <a href="/reminder/<%= reminderItem.id%>"><%= reminderItem.title %></a>
-                    <% }})%>
+                        <%  let remindersOfTheDay = []
+                            reminders.forEach(function (reminderItem) {
+                                let date = new Date(reminderItem.date) 
+                                let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ')
+                                if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.today.month + i + calendarData.today.year) {
+                                    let newEvent = { ...reminderItem }
+                                    if (newEvent.title.length > 15) {
+                                        newEvent.title = newEvent.title.slice(0,12) + '...'
+                                    }
+                                    remindersOfTheDay.push(newEvent)}}) %>
+                        <% if (remindersOfTheDay.length > 2) { %>
+                            <div><a href="/reminders/<%= dateString %>"><%= remindersOfTheDay.length %> events</a></div>
+                            <% } else { 
+                                for (reminder of remindersOfTheDay) { %>
+                                    <div><a href="/reminder/<%= reminder.id%>"><%= reminder.title %></a></div>
+                            <% }} %>
+
+                    </div>
+
                 </div>
-
-
 
 
             <% boxCount++ } %>
@@ -68,10 +89,10 @@
                 <div class="calendar-number"></div>
                 <% boxCount++ } %>
         </div>
-    </div>
+        </div>
 
 
-    <h1 class="page-header">Events</h1>
+    <h1 class="events-header">Events</h1>
     <form action="/reminders/search" method="GET">
         <input type="text" name="search" id="search" placeholder="Search for events" class="search" />
         <button class="search-btn" type="submit">Search</button>

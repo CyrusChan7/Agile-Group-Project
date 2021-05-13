@@ -1,4 +1,5 @@
 let database = require("../database");
+let update = require("../database").writeJSON;
 const express = require("express");
 const { getUserByEmailIdAndPassword } = require("./userController");
 const path = require("path");
@@ -46,6 +47,7 @@ let authController = {
 
         database.Database.push(newUser);
         console.log("Registration completed!");
+        update()
         res.render("auth/login");
 
     },
