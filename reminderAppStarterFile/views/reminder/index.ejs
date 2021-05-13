@@ -67,13 +67,11 @@
                                 let date = new Date(reminderItem.date) 
                                 let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ')
                                 if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.today.month + i + calendarData.today.year) {
-                                    let reminderTitle = reminderItem.title
-                                    if (reminderTitle.length > 15) {
-                                        reminderTitle = reminderTitle.slice(0,12) + '...'
+                                    let newEvent = { ...reminderItem }
+                                    if (newEvent.title.length > 15) {
+                                        newEvent.title = newEvent.title.slice(0,12) + '...'
                                     }
-                                    reminderItem.title = reminderTitle
-                                    console.log(reminderTitle)
-                                    remindersOfTheDay.push(reminderItem)}}) %>
+                                    remindersOfTheDay.push(newEvent)}}) %>
                         <% if (remindersOfTheDay.length > 2) { %>
                             <div><a href="/reminders/<%= dateString %>"><%= remindersOfTheDay.length %> events</a></div>
                             <% } else { 

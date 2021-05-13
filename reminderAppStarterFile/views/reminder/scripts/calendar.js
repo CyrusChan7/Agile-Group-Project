@@ -23,7 +23,6 @@ let calendarData = {
 }
 
 let changeMonth = (newDate) => {
-    console.log(newDate)
     let newDateStrTokens = newDate.toLocaleString('en-GB', {dateStyle: "full"}).split(' ')
     todayObj.year = newDateStrTokens[3]
     todayObj.month = newDateStrTokens[2]
@@ -31,10 +30,6 @@ let changeMonth = (newDate) => {
     todayObj.shownDate = newDate
     calendarData.firstOfMonthDay = new Date(todayObj.shownDate.getFullYear(), todayObj.shownDate.getMonth(), 1).getDay()
     calendarData.lastOfMonthDate = new Date(todayObj.shownDate.getFullYear(), todayObj.shownDate.getMonth() + 1, 0).getDate()
-    console.log(todayObj.realDate)
-    console.log(todayObj.shownDate)
-    console.log(calendarData.today.realDate.getMonth())
-    console.log(calendarData.today.realDate.getFullYear())
 }
 
 module.exports= { calendarData, changeMonth}
