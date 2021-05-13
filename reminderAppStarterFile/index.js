@@ -59,6 +59,12 @@ app.post("/reminder/update/:id", ensureAuthenticated, reminderController.update)
 app.post("/reminder/delete/:id", ensureAuthenticated, reminderController.delete);
 
 app.get("/reminders/search?:search", ensureAuthenticated, reminderController.searchBarResults);
+
+// Changes Calendar month
+app.get("/nextMonth", reminderController.nextMonth)
+app.get("/resetMonth", reminderController.resetMonth)
+app.get("/prevMonth", reminderController.prevMonth)
+
 // Routes end here
 
 // Start of Weather API route

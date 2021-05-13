@@ -1,7 +1,7 @@
 let database = require("../database").Database;
 let update = require("../database").writeJSON;
 const fetch = require("node-fetch");
-const { calendarData } = require("../views/reminder/scripts/calendar");
+const { calendarData, changeMonth } = require("../views/reminder/scripts/calendar")
 
 let remindersController = {
   // List out all the reminder
@@ -194,6 +194,27 @@ let remindersController = {
     });
   },
 
+  // Change months
+  nextMonth: (req, res) => {
+    // Displays the next month on the calendar
+    let newMonth = new Date(calendarData.today.shownDate.getFullYear(), calendarData.today.shownDate.getMonth()+1, 1)
+    changeMonth(newMonth)
+    res.redirect("/reminders");
+  },
+
+  prevMonth: (req, res) => {
+    // Displays the next month on the calendar
+    let newMonth = new Date(calendarData.today.shownDate.getFullYear(), calendarData.today.shownDate.getMonth()-1, 1)
+    changeMonth(newMonth)
+    res.redirect("/reminders");
+  },
+
+  resetMonth: (req, res) => {
+    // Resets the shown month to today's month
+    let newMonth = new Date(calendarData.today.realDate.getFullYear(), calendarData.today.realDate.getMonth(), calendarData.today.realDate.getDate())
+    changeMonth(newMonth)
+    res.redirect("/reminders");
+  },
 };
 
 module.exports = remindersController;

@@ -21,7 +21,12 @@
     <div class="calendar-wrapper">
         <div class="calendar-picture">
             <div class="date-location">
-                <h2><%= calendarData.today.month %> <%= calendarData.today.date %> </h2>
+                <!-- Only displays date if on current month -->
+                <% if ( String(calendarData.today.realDate.getMonth()) + ',' + String(calendarData.today.realDate.getFullYear()) === String(calendarData.today.shownDate.getMonth()) + ',' + String(calendarData.today.shownDate.getFullYear())) { %>
+                    <h2><%= calendarData.today.month %> <%= calendarData.today.date %>, <%= calendarData.today.year %></h2>
+                <% } else { %>
+                    <h2><%= calendarData.today.month %> <%= calendarData.today.year %></h2>
+                <% } %>
                 <h4><%= calendarData.today.weekDay %></h4>
                 <h4 id="location"></h4>
             </div>
@@ -29,6 +34,9 @@
             <div class="weather">
                 <h2 style="display: inline-block;" id="temp"></h2 > <h2 style="display: inline-block;">C</h2>
                 <h4 id="description"></h4>
+                <a href="/prevMonth" class="btn btn-primary"> PREV MONTH </a>
+                <a href="/resetMonth" class="btn btn-primary"> RESET MONTH </a>
+                <a href="/nextMonth" class="btn btn-primary"> NEXT MONTH </a>
             </div>
             
         </div>
@@ -44,8 +52,7 @@
                 
             <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { 
                 let dateString = calendarData.today.year + String(calendarData.today.monthNum).padStart(2, '0') + String(i).padStart(2, '0') %>
-
-                <% if (i === Number(calendarData.today.date)) { %>
+                <% if (i === Number(calendarData.today.date) && String(calendarData.today.realDate.getMonth()) + ',' + String(calendarData.today.realDate.getFullYear()) === String(calendarData.today.shownDate.getMonth()) + ',' + String(calendarData.today.shownDate.getFullYear())) { %>
                 <div class="calendar-number current-day">
                     <a href=<%="/reminders/" + dateString %>> <%= i %> </a>
                 <% } else { %>
