@@ -10,7 +10,7 @@ const writeJSON = () =>  {
             console.log("File read failed:", err)
             return
         }
-        console.log('done')
+        //console.log('done')
 })
 }
 
