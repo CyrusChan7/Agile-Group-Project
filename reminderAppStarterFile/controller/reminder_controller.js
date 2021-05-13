@@ -197,14 +197,14 @@ let remindersController = {
   // Change months
   nextMonth: (req, res) => {
     // Displays the next month on the calendar
-    let newMonth = new Date(calendarData.today.shownDate.getFullYear(), calendarData.today.shownDate.getMonth()+1, 1)
+    let newMonth = new Date(calendarData.shownDate.realDate.getFullYear(), calendarData.shownDate.realDate.getMonth()+1, 1)
     changeMonth(newMonth)
     res.redirect("/reminders");
   },
 
   prevMonth: (req, res) => {
     // Displays the next month on the calendar
-    let newMonth = new Date(calendarData.today.shownDate.getFullYear(), calendarData.today.shownDate.getMonth()-1, 1)
+    let newMonth = new Date(calendarData.shownDate.realDate.getFullYear(), calendarData.shownDate.realDate.getMonth()-1, 1)
     changeMonth(newMonth)
     res.redirect("/reminders");
   },
