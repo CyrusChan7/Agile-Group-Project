@@ -1,0 +1,29 @@
+<div class="container">
+    <h1 class="events-header">Events</h1>
+
+    <ul class="list-group">
+        <% if (reminders.length === 0) { %>
+            <h2> You don't have any events! </h2>
+        <% } else { %>
+
+            <% reminders.forEach(function (reminderItem) { %>
+                <li class="list-group-item">
+                    <img src=<%=reminderItem.image_url %> alt=
+                    <%= reminderItem.title %> style="width:50px; height:50px;">
+
+                        <strong><%= reminderItem.title %>: </strong>
+                        <%= reminderItem.description %>
+                            || Date:
+                            <%= reminderItem.date %>
+                                || Tags: (<%= reminderItem.tags %>) || Importance:
+                                    <% if (reminderItem.completed == true) { %>
+                                        <span class="badge badge-success">Low</span>
+                                        <% } else if (reminderItem.completed == false) { %>
+                                            <span class="badge badge-danger">Important</span>
+                                            <% } %>
+                                                <a class="pull-right" href=<%="/reminder/" + reminderItem.id %>>View</a>
+                </li>
+                <% }) %>
+        <% } %>
+    </ul>
+</div>

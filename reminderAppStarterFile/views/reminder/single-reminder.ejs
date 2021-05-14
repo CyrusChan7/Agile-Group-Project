@@ -7,18 +7,21 @@
             <img src=<%=reminderItem.image_url %> alt=
             <%= reminderItem.title %> style="width:100px; height:100px;">
 
-                <h4>
-                    <p>Event Details:</p>
-                    <%= reminderItem.description %>
-                </h4>
-                <h4>
-                    <p>Event Tags:</p>
-                    <span class="label label-success"><%= reminderItem.tags %></span>
-                </h4>
-                <h4>
-                    <p>Event Date:</p>
-                    <%= reminderItem.date %>
-                </h4>
+                <div>
+                    <h4>Event Details:</h4>
+                    <b><%= reminderItem.description %></b>
+                </div>
+				<br>
+                <div>
+                    <h4>Event Tags:</h4>
+                    <b><span class="label label-success"><%= reminderItem.tags %></span></b>
+                </div>
+				<br>
+                <div>
+                    <h4>Event Date:</h4>
+                    <b><%= reminderItem.date %></b>
+                </div>
+				<br>
                 <h4>
                     <p>Importance:</p>
                     <% if (reminderItem.completed == true) { %>
@@ -27,17 +30,8 @@
                             <span class="badge badge-danger">Important</span>
                             <% } %>
                 </h4>
-                <h4>Minievents:
-                    <ul>
-                        <% for(let i = 0; i < reminderItem.subtasks.length; i++) {%>
-                            <% if (!(reminderItem.subtasks[i] === "")) {%>
-                                <li>
-                                    <%= reminderItem.subtasks[i] %>
-                                </li>
-                                <%   }%>
-                                    <% } %>
-                    </ul>
-                </h4>
+				<br>
+                
 
 
                 <a class="btn btn-warning" href=<%="/reminder/" + reminderItem.id + "/edit" %>>Edit</a>

@@ -1,51 +1,19 @@
-let Database = [{
-        id: 1,      // Structure of one user
-        name: "Cindy",
-        email: "123@gmail.com",
-        password: "123",
-        reminders: [{
-                id: 1,
-                title: "Big Exam",
-                description: "help me",
-                completed: false,
-                image_url: "/Reminder.svg",
-                subtasks: [],
-				date: "05/21/2021",
-				tags: "School",
-            },
-            {
-                id: 2,
-                title: "Music Festival",
-                description: "we rowdy",
-                completed: true,
-                image_url: "/Reminder.svg",
-                subtasks: [],
-				date: "05/16/2021",
-				tags: "Big fun",
-            }
-        ],
-        avatar: `https://avatars.abstractapi.com/v1/?api_key=${process.env.Abstractapi_CLIENT_ID}&name=Cindy&image_size=60&char_limit=2&background_color=ea3374&font_color=ffffff&is_rounded=true&is_uppercase=true`,
-        friends: { friendID: [] },
-    },
-    {
-        id: 2,      // Structure of other user
-        name: "Alex",
-        email: "alex123@gmail.com",
-        password: "alex123!",
-        reminders: [{
-            id: 1,
-            title: "Cat Park",
-            description: "big chonk at big park",
-            completed: false,
-            image_url: "/Reminder.svg",
-            subtasks: [],
-			date: "05/12/2021",
-			tags: "hehexd",
-        }, ],
-        avatar: `https://avatars.abstractapi.com/v1/?api_key=${process.env.Abstractapi_CLIENT_ID}&name=Alex&image_size=60&char_limit=2&background_color=0cbf18&font_color=ffffff&is_rounded=true&is_uppercase=true`,
-        friends: { friendID: [] },
-    }
-]
+let fs = require('fs');
+
+let Database = JSON.parse(fs.readFileSync('./UserData.json', 'utf8'))
+
+
+const writeJSON = () =>  {
+    let dictstring = JSON.stringify(Database, null, '\t')
+    fs.writeFile("UserData.json", dictstring, function(err, result) {
+        if (err) {
+            console.log("File read failed:", err)
+            return
+        }
+        //console.log('done')
+})
+}
+
 
 const userModel = {      
     findOne: (email) => {       // find user by email
@@ -64,4 +32,4 @@ const userModel = {
     },
 };
 
-module.exports = { Database, userModel };
+module.exports = { Database, userModel, writeJSON };
