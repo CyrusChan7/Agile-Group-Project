@@ -33,6 +33,10 @@ jobs:
           name: Run tests
           command: npm test
           working_directory: "~/project/reminderAppStarterFile"
+      - run:
+          name: Run creation tests
+          command: npm run test-events
+          working_directory: "~/project/reminderAppStarterFile"
 
 workflows:
   # Below is the definition of your workflow.
