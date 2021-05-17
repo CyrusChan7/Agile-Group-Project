@@ -122,7 +122,7 @@ let remindersController = {
       if (String(reminder.id) === req.params.id) {
         reminder.title = req.body.title;
         reminder.description = req.body.description;
-        reminder.importance = req.body.importance == "true";
+        reminder.importance = req.body.importance;
         reminder.tags = req.body.tags;
         reminder.subtasks = tempSubtasks;
         reminder.date = req.body.date.replace("T", " ");
