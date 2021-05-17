@@ -28,23 +28,23 @@
     </div>
 
     <div class="form-group">
-      <label for="completed">Importance</label>
+      <label for="importance">Importance</label>
       <div class="radio">
         <label>
-          <% if (reminderItem.completed == true) { %>
-            <input type="radio" name="completed" id="true" value="true" checked="checked">
+          <% if (reminderItem.importance === true) { %>
+            <input type="radio" name="importance" id="true" value="true" checked="checked">
           <% } else { %>
-            <input type="radio" name="completed" id="true" value="true">
+            <input type="radio" name="importance" id="true" value="true">
           <% } %>
           Low
         </label>
       </div>
       <div class="radio">
         <label>
-          <% if (reminderItem.completed == false) { %>
-            <input type="radio" name="completed" id="false" value="false" checked="checked">
+          <% if (reminderItem.importance === false) { %>
+            <input type="radio" name="importance" id="false" value="false" checked="checked">
           <% } else { %>
-            <input type="radio" name="completed" id="false" value="false">
+            <input type="radio" name="importance" id="false" value="false">
           <% } %>
           High
         </label>

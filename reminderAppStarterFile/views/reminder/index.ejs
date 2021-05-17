@@ -111,9 +111,9 @@
                         || Date:
                         <%= reminderItem.date %>
                             || Tags: (<%= reminderItem.tags %>) || Importance:
-                                <% if (reminderItem.completed == true) { %>
+                                <% if (reminderItem.importance == true) { %>
                                     <span class="badge badge-success">Low</span>
-                                    <% } else if (reminderItem.completed == false) { %>
+                                    <% } else if (reminderItem.importance == false) { %>
                                         <span class="badge badge-danger">Important</span>
                                         <% } %>
                                             <a class="pull-right" href=<%="/reminder/" + reminderItem.id %>>View</a>
@@ -148,9 +148,9 @@
                                         || Date:
                                         <%= reminderItem.date %>
                                             || Tags: (<%= reminderItem.tags %>) || Importance:
-                                                <% if (reminderItem.completed == true) { %>
+                                                <% if (reminderItem.importance == true) { %>
                                                     <span class="badge badge-success">Low</span>
-                                                    <% } else if (reminderItem.completed == false) { %>
+                                                    <% } else if (reminderItem.importance == false) { %>
                                                         <span class="badge badge-danger">Important</span>
                                                         <% } %>
                             </li>

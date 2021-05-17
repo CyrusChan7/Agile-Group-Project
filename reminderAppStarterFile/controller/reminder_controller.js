@@ -73,7 +73,7 @@ let remindersController = {
       id: idNum,
       title: req.body.title,
       description: req.body.description,
-      completed: false,
+      importance: false,
       image_url: "",
       tags: req.body.tags,
       subtasks: tempSubtasks,
@@ -110,7 +110,7 @@ let remindersController = {
     const searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
-    update()
+    // update()   // not necessary
     res.render("reminder/edit", { reminderItem: searchResult });
   },
 
@@ -122,7 +122,7 @@ let remindersController = {
       if (String(reminder.id) === req.params.id) {
         reminder.title = req.body.title;
         reminder.description = req.body.description;
-        reminder.completed = req.body.completed == "true";
+        reminder.importance = req.body.importance == "true";
         reminder.tags = req.body.tags;
         reminder.subtasks = tempSubtasks;
         reminder.date = req.body.date.replace("T", " ");
