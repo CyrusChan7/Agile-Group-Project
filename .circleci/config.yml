@@ -30,6 +30,7 @@ jobs:
       # - node/install-packages:
       #     pkg-manager: yarn 
       - run:
+          app-dir: "~/project/reminderAppStarterFile"
           name: Run tests
           command: npm test
 
