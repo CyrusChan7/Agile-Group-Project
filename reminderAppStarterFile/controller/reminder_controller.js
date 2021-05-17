@@ -73,7 +73,7 @@ let remindersController = {
       id: idNum,
       title: req.body.title,
       description: req.body.description,
-      importance: false,
+      importance: req.body.importance,
       image_url: "",
       tags: req.body.tags,
       subtasks: tempSubtasks,
