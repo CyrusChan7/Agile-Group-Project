@@ -24,11 +24,17 @@
 				<br>
                 <h4>
                     <p>Importance:</p>
-                    <% if (reminderItem.importance == true) { %>
-                        <span class="badge badge-success">Low</span>
-                        <% } else if (reminderItem.importance == false) { %>
-                            <span class="badge badge-danger">Important</span>
-                            <% } %>
+                    <% if (reminderItem.importance === '1') { %>
+                        <span class="badge badge-success">Very Low Importance</span>
+                    <% } else if (reminderItem.importance === '2') { %>
+                        <span class="badge badge-success">Low Importance</span>
+                    <% } else if (reminderItem.importance === '3') { %>
+                        <span class="badge badge-success">Moderate Importance</span>
+                    <% } else if (reminderItem.importance === '4') { %>
+                        <span class="badge badge-danger">High Importance</span>
+                    <% } else if (reminderItem.importance === '5') { %>
+                        <span class="badge badge-danger">Very High Importance</span>
+                    <% } %>
                 </h4>
 				<br>
                 
