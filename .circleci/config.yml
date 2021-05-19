@@ -25,18 +25,18 @@ jobs:
       # Next, the node orb's install-packages step will install the dependencies from a package.json.
       # The orb install-packages step will also automatically cache them for faster future runs.
       - node/install-packages:
-          app-dir: "~/project/reminderAppStarterFile"
+          app-dir: "~/project"
       # If you are using yarn instead npm, remove the line above and uncomment the two lines below.
       # - node/install-packages:
       #     pkg-manager: yarn 
       - run:
           name: Run tests
           command: npm test
-          working_directory: "~/project/reminderAppStarterFile"
+          working_directory: "~/project"
       - run:
           name: Run creation tests
           command: npm run test-events
-          working_directory: "~/project/reminderAppStarterFile"
+          working_directory: "~/project"
 
 workflows:
   # Below is the definition of your workflow.
