@@ -109,11 +109,14 @@
         <input type="text" name="search" id="search" placeholder="Search for events" class="search" />
         <button class="search-btn" type="submit">Search</button>
     </form>
+
+    <form action="/reminders/tag" method="GET">
     <% if (sortedTags.length > 0) {
         for (i=0; i < sortedTags.length; i++){ %>
-            <div class="badge badge-success"> <%= sortedTags[i][0] + " : " + sortedTags[i][1]%></div>
+            <button class="imp-tag badge badge-primary" name="tag" type="submit" value="<%= sortedTags[i][0]%>"><%= sortedTags[i][0] + " : " + sortedTags[i][1]%></button>
     <% }} %>
-
+    </form>
+    <a href="/reminders" class="imp-tag badge badge-secondary">Clear filter</a>
     <ul class="list-group">
         <% reminders.forEach(function (reminderItem) { %>
             <li class="list-group-item">

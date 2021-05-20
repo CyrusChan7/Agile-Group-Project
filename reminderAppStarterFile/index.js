@@ -60,6 +60,8 @@ app.post("/reminder/delete/:id", ensureAuthenticated, reminderController.delete)
 
 app.get("/reminders/search?:search", ensureAuthenticated, reminderController.searchBarResults);
 
+app.get("/reminders/tag?:tag", ensureAuthenticated, reminderController.tagFilter);
+
 // Changes Calendar month
 app.get("/nextMonth", reminderController.nextMonth)
 app.get("/resetMonth", reminderController.resetMonth)

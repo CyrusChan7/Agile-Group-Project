@@ -4,29 +4,28 @@ const fetch = require("node-fetch");
 const { calendarData, changeMonth } = require("../views/reminder/scripts/calendar")
 
 function sortTags(events) {
+  // Returns a list all tags and their occurence count for displayed events
   let tagObj = {}
   for (let i = 0; i < events.length; i++) {
-    // if substring found
-    if (events[i].tags != undefined) {
-      for (let j=0; j < events[i].tags.length; j++){
-        if (events[i].tags[j] != "" ){
-          console.log(events[i].tags[j], ":", tagObj)
-          if (events[i].tags[j] in tagObj) {
-            tagObj[events[i].tags[j]] ++;
-          } else {
-            tagObj[events[i].tags[j]] = 1;
-          }
+    for (let j = 0; j < events[i].tags.length; j++){
+      // We don't want to save empty strings (no tag)
+      if (events[i].tags[j] != "" ){
+        // if tag doesn't exist in object, add it. Otherwise add 1 to its value
+        if (events[i].tags[j] in tagObj) {
+          tagObj[events[i].tags[j]] ++;
+        } else {
+          tagObj[events[i].tags[j]] = 1;
         }
       }
     }
   }
-  let tags = Object.entries(tagObj);
-  let sortedTags = tags.sort((a, b) => a[1] - b[1]);
-  return sortedTags
+  let allTags = Object.entries(tagObj);
+  // sort tags based on occurence in descending order
+  return allTags.sort((a, b) => b[1] - a[1]);
 }
 
 let remindersController = {
-  // List out all the reminder
+  // Display all events
   list: (req, res) => {
     sortedTags = sortTags(req.user.reminders);
     res.render("reminder/index", {
@@ -240,6 +239,29 @@ let remindersController = {
     let newMonth = new Date(calendarData.today.realDate.getFullYear(), calendarData.today.realDate.getMonth(), calendarData.today.realDate.getDate())
     changeMonth(newMonth)
     res.redirect("/reminders");
+  },
+
+  tagFilter: (req, res) => {
+    // Filter events based on tag
+    let filteredEvents = []
+    const filter = req.query.tag;
+
+    for (let i = 0; i < req.user.reminders.length; i++) {
+      // if the event the tag, add it to a list
+      if (req.user.reminders[i].tags.includes(filter)) {
+        filteredEvents.push(req.user.reminders[i]);
+      }
+    }
+
+    sortedTags = sortTags(filteredEvents);
+    res.render("reminder/index", {
+      user: req.user,
+      reminders: filteredEvents,
+      database: database,
+      friendIDs: req.user.friends.friendID,
+      calendarData,
+      sortedTags,
+    });
   },
 };
 
