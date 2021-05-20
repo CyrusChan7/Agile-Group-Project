@@ -70,7 +70,7 @@ let remindersController = {
 
     for (let i = 0; i < req.user.reminders.length; i++) {
       // if substring found
-      if (req.user.reminders[i].title.includes(userSearchTerm)) {
+      if (req.user.reminders[i].title.toLowerCase().includes(userSearchTerm.toLowerCase())) {
         searchResultsDatabase.push(req.user.reminders[i]);
       }
     }
