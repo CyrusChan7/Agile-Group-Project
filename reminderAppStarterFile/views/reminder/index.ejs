@@ -35,9 +35,9 @@
             <div class="weather">
                 <h2 style="display: inline-block;" id="temp"></h2 > <h2 style="display: inline-block;">C</h2>
                 <h4 id="description"></h4>
-                <a href="/prevMonth" class="btn btn-primary"> PREV MONTH </a>
-                <a href="/resetMonth" class="btn btn-primary"> RESET MONTH </a>
-                <a href="/nextMonth" class="btn btn-primary"> NEXT MONTH </a>
+                <a href="/prevMonth" class="btn btn-primary">Prev Month</a>
+                <a href="/resetMonth" class="btn btn-primary">Current Month</a>
+                <a href="/nextMonth" class="btn btn-primary">Next Month</a>
             </div>
             
         </div>
@@ -109,7 +109,10 @@
         <input type="text" name="search" id="search" placeholder="Search for events" class="search" />
         <button class="search-btn" type="submit">Search</button>
     </form>
-
+    <% if (sortedTags.length > 0) {
+        for (i=0; i < sortedTags.length; i++){ %>
+            <div class="badge badge-success"> <%= sortedTags[i][0] + " : " + sortedTags[i][1]%></div>
+    <% }} %>
 
     <ul class="list-group">
         <% reminders.forEach(function (reminderItem) { %>

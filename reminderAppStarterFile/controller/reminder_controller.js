@@ -3,15 +3,39 @@ let update = require("../database").writeJSON;
 const fetch = require("node-fetch");
 const { calendarData, changeMonth } = require("../views/reminder/scripts/calendar")
 
+function sortTags(events) {
+  let tagObj = {}
+  for (let i = 0; i < events.length; i++) {
+    // if substring found
+    if (events[i].tags != undefined) {
+      for (let j=0; j < events[i].tags.length; j++){
+        if (events[i].tags[j] != "" ){
+          console.log(events[i].tags[j], ":", tagObj)
+          if (events[i].tags[j] in tagObj) {
+            tagObj[events[i].tags[j]] ++;
+          } else {
+            tagObj[events[i].tags[j]] = 1;
+          }
+        }
+      }
+    }
+  }
+  let tags = Object.entries(tagObj);
+  let sortedTags = tags.sort((a, b) => a[1] - b[1]);
+  return sortedTags
+}
+
 let remindersController = {
   // List out all the reminder
   list: (req, res) => {
+    sortedTags = sortTags(req.user.reminders);
     res.render("reminder/index", {
       user: req.user,
       reminders: req.user.reminders,
       database: database,
       friendIDs: req.user.friends.friendID,
       calendarData,
+      sortedTags,
     });
   },
 
@@ -51,19 +75,21 @@ let remindersController = {
         searchResultsDatabase.push(req.user.reminders[i]);
       }
     }
+    sortedTags = sortTags(searchResultsDatabase);
     res.render("reminder/index", {
       user: req.user,
       reminders: searchResultsDatabase,
       database: database,
       friendIDs: req.user.friends.friendID,
       calendarData,
+      sortedTags,
     });
   },
 
   // Create a new reminder
   create: async (req, res) => {
     // const tempSubtasks = [];
-    const tempSubtasks = req.body.subtasks.split(",");
+//    const tempSubtasks = req.body.subtasks.split(",");
 
     let idNum = Number(1);
     if (req.user.reminders.length != 0) {
@@ -75,8 +101,8 @@ let remindersController = {
       description: req.body.description,
       importance: req.body.importance,
       image_url: "",
-      tags: req.body.tags,
-      subtasks: tempSubtasks,
+      tags: req.body.tags.split(",").map(item=>item.trim()),
+//      subtasks: tempSubtasks,
       date: req.body.date.replace("T", " "),
     };
     //console.log(`DEBUG create tempSubtasks is: ${tempSubtasks}`)
@@ -117,14 +143,14 @@ let remindersController = {
   // Update a specific reminder
   update: (req, res) => {
     // Loop through all reminders and update the correct one (id)
-    const tempSubtasks = req.body.subtasks.split(",");
+    // const tempSubtasks = req.body.subtasks.split(",");
     req.user.reminders.forEach((reminder) => {
       if (String(reminder.id) === req.params.id) {
         reminder.title = req.body.title;
         reminder.description = req.body.description;
         reminder.importance = req.body.importance;
-        reminder.tags = req.body.tags;
-        reminder.subtasks = tempSubtasks;
+        reminder.tags = req.body.tags.split(",").map(item=>item.trim());
+//        reminder.subtasks = tempSubtasks;
         reminder.date = req.body.date.replace("T", " ");
       }
       // console.log(`DEBUG update tempSubtasks is: ${tempSubtasks}`)
