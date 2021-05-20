@@ -110,37 +110,32 @@
         <button class="search-btn" type="submit">Search</button>
     </form>
 
-    <div class="importance-filter">
-        <span class="imp-5 badge badge-light">Very High Importance</span>
-        <span class="imp-4 badge badge-light">High Importance</span>
-        <span class="imp-3 badge badge-light">Moderate Importance</span>
-        <span class="imp-2 badge badge-light">Low Importance</span>
-        <span class="imp-1 badge badge-light">Very Low Importance</span>
-    </div>
 
     <ul class="list-group">
         <% reminders.forEach(function (reminderItem) { %>
             <li class="list-group-item">
                 <img src=<%=reminderItem.image_url %> alt=
                 <%= reminderItem.title %> style="width:50px; height:50px;">
-
+                <span>
                     <strong><%= reminderItem.title %>: </strong>
                     <%= reminderItem.description %>
                         || Date:
                         <%= reminderItem.date %>
-                            || Tags: (<%= reminderItem.tags %>) ||
+                            || Tags: (<%= reminderItem.tags %>)
+                            <a class="pull-right" href=<%="/reminder/" + reminderItem.id %>>View</a><br>
                                 <% if (reminderItem.importance === '1') { %>
-                                        <span class="badge badge-secondary">Very Low Importance</span>
+                                        <span class="imp-tag badge badge-secondary">Very Low Importance</span>
                                     <% } else if (reminderItem.importance === '2') { %>
-                                        <span class="badge badge-success">Low Importance</span>
+                                        <span class="imp-tag badge badge-success">Low Importance</span>
                                     <% } else if (reminderItem.importance === '3') { %>
-                                        <span class="badge badge-primary">Moderate Importance</span>
+                                        <span class="imp-tag badge badge-primary">Moderate Importance</span>
                                     <% } else if (reminderItem.importance === '4') { %>
-                                        <span class="badge badge-warning">High Importance</span>
+                                        <span class="imp-tag badge badge-warning">High Importance</span>
                                     <% } else if (reminderItem.importance === '5') { %>
-                                        <span class="badge badge-danger">Very High Importance</span>
+                                        <span class="imp-tag badge badge-danger">Very High Importance</span>
                                     <% } %>
-                                            <a class="pull-right" href=<%="/reminder/" + reminderItem.id %>>View</a>
+                                            
+                </span>
             </li>
             <% }) %>
     </ul>
