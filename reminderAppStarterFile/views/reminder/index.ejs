@@ -77,7 +77,18 @@
                             <div><a href="/reminders/date/<%= dateString %>"><%= remindersOfTheDay.length %> events</a></div>
                             <% } else { 
                                 for (reminder of remindersOfTheDay) { %>
-                                    <div><a href="/reminder/<%= reminder.id%>"><%= reminder.title %></a></div>
+                                    <% if (reminder.importance === '1') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-secondary"><%= reminder.title %></a></div>
+                                    <% } else if (reminder.importance === '2') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-success"><%= reminder.title %></a></div>
+                                    <% } else if (reminder.importance === '3') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-primary"><%= reminder.title %></a></div>
+                                    <% } else if (reminder.importance === '4') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-warning"><%= reminder.title %></a></div>
+                                    <% } else if (reminder.importance === '5') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-danger"><%= reminder.title %></a></div>
+                                    <% } %>
+                                    
                             <% }} %>
 
                     </div>
@@ -99,6 +110,13 @@
         <button class="search-btn" type="submit">Search</button>
     </form>
 
+    <div class="importance-filter">
+        <span class="imp-5 badge badge-light">Very High Importance</span>
+        <span class="imp-4 badge badge-light">High Importance</span>
+        <span class="imp-3 badge badge-light">Moderate Importance</span>
+        <span class="imp-2 badge badge-light">Low Importance</span>
+        <span class="imp-1 badge badge-light">Very Low Importance</span>
+    </div>
 
     <ul class="list-group">
         <% reminders.forEach(function (reminderItem) { %>
@@ -112,13 +130,13 @@
                         <%= reminderItem.date %>
                             || Tags: (<%= reminderItem.tags %>) ||
                                 <% if (reminderItem.importance === '1') { %>
-                                        <span class="badge badge-success">Very Low Importance</span>
+                                        <span class="badge badge-secondary">Very Low Importance</span>
                                     <% } else if (reminderItem.importance === '2') { %>
                                         <span class="badge badge-success">Low Importance</span>
                                     <% } else if (reminderItem.importance === '3') { %>
-                                        <span class="badge badge-success">Moderate Importance</span>
+                                        <span class="badge badge-primary">Moderate Importance</span>
                                     <% } else if (reminderItem.importance === '4') { %>
-                                        <span class="badge badge-danger">High Importance</span>
+                                        <span class="badge badge-warning">High Importance</span>
                                     <% } else if (reminderItem.importance === '5') { %>
                                         <span class="badge badge-danger">Very High Importance</span>
                                     <% } %>

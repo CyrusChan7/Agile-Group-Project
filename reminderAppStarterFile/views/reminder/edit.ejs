@@ -1,4 +1,4 @@
-<% let reminder = JSON.stringify(reminderItem) %>
+<!-- <% let reminder = JSON.stringify(reminderItem) %> -->
 <div class="container">
   <h1 class="page-header">Edit Event</h1>
   <form action=<%= "/reminder/update/" + reminderItem.id %> method="POST">
@@ -82,7 +82,8 @@
 </div>
 
 <script>
-  let reminder = <%-reminder%>
+  let reminderStr = '<%- JSON.stringify(reminderItem) %>'
+  let reminder = JSON.parse(reminderStr)
   let titleInput = document.querySelector("#titleInput")
   titleInput.value = reminder.title
   let descriptionInput = document.querySelector("#descriptionInput")

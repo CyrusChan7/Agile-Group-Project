@@ -17,13 +17,13 @@
                             <%= reminderItem.date %>
                                 || Tags: (<%= reminderItem.tags %>) || 
                                 <% if (reminderItem.importance === '1') { %>
-                                    <span class="badge badge-success">Very Low Importance</span>
+                                    <span class="badge badge-secondary">Very Low Importance</span>
                                 <% } else if (reminderItem.importance === '2') { %>
                                     <span class="badge badge-success">Low Importance</span>
                                 <% } else if (reminderItem.importance === '3') { %>
-                                    <span class="badge badge-success">Moderate Importance</span>
+                                    <span class="badge badge-primary">Moderate Importance</span>
                                 <% } else if (reminderItem.importance === '4') { %>
-                                    <span class="badge badge-danger">High Importance</span>
+                                    <span class="badge badge-warning">High Importance</span>
                                 <% } else if (reminderItem.importance === '5') { %>
                                     <span class="badge badge-danger">Very High Importance</span>
                                 <% } %>
