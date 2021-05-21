@@ -263,6 +263,30 @@ let remindersController = {
       sortedTags,
     });
   },
+
+  impFilter: (req, res) => {
+    // Filter events based on tag
+    let filteredEvents = []
+    const filter = req.query.importance;
+    console.log(filter)
+
+    for (let i = 0; i < req.user.reminders.length; i++) {
+      // if the event the tag, add it to a list
+      if (req.user.reminders[i].importance === filter) {
+        filteredEvents.push(req.user.reminders[i]);
+      }
+    }
+
+    sortedTags = sortTags(filteredEvents);
+    res.render("reminder/index", {
+      user: req.user,
+      reminders: filteredEvents,
+      database: database,
+      friendIDs: req.user.friends.friendID,
+      calendarData,
+      sortedTags,
+    });
+  },
 };
 
 module.exports = remindersController;

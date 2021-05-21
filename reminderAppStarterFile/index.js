@@ -62,6 +62,8 @@ app.get("/reminders/search?:search", ensureAuthenticated, reminderController.sea
 
 app.get("/reminders/tag?:tag", ensureAuthenticated, reminderController.tagFilter);
 
+app.get("/reminders/importance?:importance", ensureAuthenticated, reminderController.impFilter);
+
 // Changes Calendar month
 app.get("/nextMonth", reminderController.nextMonth)
 app.get("/resetMonth", reminderController.resetMonth)
