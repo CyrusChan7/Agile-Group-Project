@@ -268,7 +268,6 @@ let remindersController = {
     // Filter events based on tag
     let filteredEvents = []
     const filter = req.query.importance;
-    console.log(filter)
 
     for (let i = 0; i < req.user.reminders.length; i++) {
       // if the event the tag, add it to a list
