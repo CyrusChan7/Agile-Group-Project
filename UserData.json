@@ -9,31 +9,42 @@
 				"id": "1",
 				"title": "Big Exam",
 				"description": "help megg",
-				"completed": false,
 				"image_url": "/Reminder.svg",
-				"subtasks": [],
-				"date": "05/21/2021",
-				"tags": "School"
-			},
-			{
-				"id": 2,
-				"title": "test feed the dog",
-				"description": "feed her before tomorrow",
-				"completed": false,
-				"image_url": "https://images.unsplash.com/photo-1620589537331-59fd2d3f3e98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA4NjQyODc&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "Delicious food",
 				"subtasks": [
 					""
 				],
-				"date": "05/20/2021"
+				"date": "2021-05-22 12:26",
+				"tags": [
+					"School"
+				],
+				"importance": "5"
 			},
 			{
-				"id": 3,
+				"id": "2",
+				"title": "test feed the dog",
+				"description": "feed her before tomorrow",
+				"image_url": "https://images.unsplash.com/photo-1620589537331-59fd2d3f3e98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA4NjQyODc&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					"Delicious food"
+				],
+				"subtasks": [
+					""
+				],
+				"date": "05/10/2021",
+				"importance": "4"
+			},
+			{
+				"id": "3",
 				"title": "test feed the cat",
 				"description": "feed her before sunset",
-				"completed": false,
 				"image_url": "https://images.unsplash.com/photo-1620474711230-6b6bd1b58c79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA4NjQyODc&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "Delicious, food, at, my, fingertips",
+				"tags": [
+					"Delicious",
+					"food",
+					"at",
+					"my",
+					"fingertips"
+				],
 				"subtasks": [
 					"it",
 					" needs",
@@ -41,153 +52,270 @@
 					" quite",
 					" soon"
 				],
-				"date": "05/21/2021"
+				"date": "2021-05-21 17:08",
+				"importance": "3"
 			},
 			{
-				"id": 4,
+				"id": "4",
 				"title": "June Event",
 				"description": "This is a June event",
-				"completed": true,
 				"image_url": "https://images.unsplash.com/photo-1618540258747-0c54c8e2af65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA4ODU3Mzc&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "Demo",
+				"tags": [
+					"Demo"
+				],
 				"subtasks": [
 					""
 				],
-				"date": "06/17/2021"
+				"date": "06/17/2021",
+				"importance": "2"
 			},
 			{
-				"id": 5,
-				"title": "April Event",
-				"description": "April Event",
-				"completed": true,
-				"image_url": "https://images.unsplash.com/photo-1620739531203-7fdb5407ce32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA4ODc0ODY&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "Demo",
-				"subtasks": [
-					""
-				],
-				"date": "04/15/2021"
-			},
-			{
-				"id": 6,
-				"title": "agileagile",
+				"id": "5",
+				"title": "asdf",
 				"description": "",
-				"completed": false,
 				"image_url": "/Reminder.svg",
-				"tags": "",
+				"tags": [
+					""
+				],
 				"subtasks": [
 					""
 				],
-				"date": "2021-05-21 11:13"
+				"date": "2022-01-03 23:08",
+				"importance": "1"
 			},
 			{
-				"id": 7,
-				"title": "test E1",
+				"id": "6",
+				"title": "abc",
 				"description": "",
-				"completed": false,
-				"image_url": "https://images.unsplash.com/photo-1615631898182-0f6550dd2fbd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA5MzAyNzk&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "",
+				"image_url": "https://images.unsplash.com/photo-1609621472826-42ee89c0dc44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA5NzI1OTM&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
+				],
 				"subtasks": [
 					""
 				],
-				"date": "2021-05-03 11:24"
+				"date": "07/18/2021",
+				"importance": "4"
 			},
 			{
-				"id": 8,
-				"title": "haircut",
-				"description": "asdfa",
-				"completed": false,
-				"image_url": "https://images.unsplash.com/photo-1550450877-efc847373b25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA5MzE0MDM&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "one,two,three",
-				"subtasks": [
-					"1",
-					"2",
-					"3"
+				"id": "7",
+				"title": "TestImp-1",
+				"description": "TestImp-123",
+				"importance": "3",
+				"image_url": "https://images.unsplash.com/photo-1620299241737-2be6876b3079?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjEyODA4OTQ&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
 				],
-				"date": "2021-07-08 11:43"
-			},
-			{
-				"id": 9,
-				"title": "test feed the dog",
-				"description": "feed her before tomorrow",
-				"completed": false,
-				"image_url": "https://images.unsplash.com/photo-1620425724866-cde89afce37b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA5MzE4OTQ&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "Delicious food",
 				"subtasks": [
 					""
 				],
-				"date": "05/20/2021"
+				"date": "2021-05-18 12:48"
 			},
 			{
-				"id": 10,
-				"title": "test feed the cat",
-				"description": "feed her before sunset",
-				"completed": false,
-				"image_url": "https://images.unsplash.com/photo-1620807892683-7723b174c1ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA5MzE4OTU&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "Delicious, food, at, my, fingertips",
-				"subtasks": [
-					"it",
-					" needs",
-					" happen",
-					" quite",
-					" soon"
+				"id": "8",
+				"title": "TestImp-1.1",
+				"description": "TestImp-1.1",
+				"importance": "3",
+				"image_url": "https://images.unsplash.com/photo-1560092604-898c696535d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjEyODEwMjg&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
 				],
-				"date": "05/21/2021"
-			},
-			{
-				"id": 11,
-				"title": "test empty event",
-				"description": "",
-				"completed": false,
-				"image_url": "https://images.unsplash.com/photo-1620600573818-211930469539?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA5MzE4OTU&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "",
 				"subtasks": [
 					""
 				],
-				"date": ""
+				"date": "2021-05-18 12:50"
 			},
 			{
-				"id": 12,
-				"title": "test this title is so long, will it work or break our code? Or will it be shortened?",
-				"description": "",
-				"completed": false,
-				"image_url": "https://images.unsplash.com/photo-1620800756279-6f344d0565b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA5MzE4OTU&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "",
+				"id": "9",
+				"title": "TestImp-2",
+				"description": "TestImp-2",
+				"importance": "2",
+				"image_url": "https://images.unsplash.com/photo-1620809512079-ed30b34bf7d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjEyODE4OTI&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
+				],
 				"subtasks": [
 					""
 				],
-				"date": "05/22/2021"
+				"date": "2021-05-18 13:04"
+			},
+			{
+				"id": "10",
+				"title": "TestImp-32",
+				"description": "TestImp-3",
+				"importance": "5",
+				"image_url": "https://images.unsplash.com/photo-1617525265215-ad268b817524?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjEyODE5MjA&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
+				],
+				"subtasks": [
+					""
+				],
+				"date": "2021-05-17 undefined"
+			},
+			{
+				"id": "11",
+				"title": "TestImp-4",
+				"description": "TestImp-4",
+				"importance": "3",
+				"image_url": "https://images.unsplash.com/photo-1616858713410-4eb7f64899f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjEyODE5NDI&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
+				],
+				"subtasks": [
+					""
+				],
+				"date": "05/18/2021"
+			},
+			{
+				"id": "12",
+				"title": "TestImp-5",
+				"description": "TestImp-5",
+				"importance": "5",
+				"image_url": "https://images.unsplash.com/photo-1619785699068-c8225c74ae46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjEyODE5NjE&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
+				],
+				"subtasks": [
+					""
+				],
+				"date": "05/19/2021"
 			},
 			{
 				"id": 13,
-				"title": "test feed the cattt now",
-				"description": "feed her before sunset",
-				"completed": false,
-				"image_url": "https://images.unsplash.com/photo-1620632889724-f1ce99b4e7e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA5MzE4OTY&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "Delicious, food, at, my, fingertips",
-				"subtasks": [
-					"it",
-					" needs",
-					" happen",
-					" quite",
-					" soon"
+				"title": "apple",
+				"description": "testapple",
+				"importance": "4",
+				"image_url": "https://images.unsplash.com/photo-1620787313321-a6d20df9ece7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjEzOTM5NjA&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
 				],
-				"date": "05/21/2021"
+				"subtasks": [
+					""
+				],
+				"date": "2021-12-12 12:44"
 			},
 			{
 				"id": 14,
-				"title": "test feed the cattt now haha",
-				"description": "feed her before sunset",
-				"completed": false,
-				"image_url": "https://images.unsplash.com/photo-1620842766035-786cb6b3b3d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA5MzE4OTY&ixlib=rb-1.2.1&q=80&w=1080",
-				"tags": "Delicious, food, at, my, fingertips",
-				"subtasks": [
-					"it",
-					" needs",
-					" happen",
-					" quite",
-					" soon"
+				"title": "test20210518",
+				"description": "test20210518",
+				"importance": "2",
+				"image_url": "https://images.unsplash.com/photo-1583912372139-6a46eb6eb119?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjEzOTQwMzY&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
 				],
-				"date": "05/21/2021"
+				"subtasks": [
+					""
+				],
+				"date": "2021-05-18"
+			},
+			{
+				"id": 15,
+				"title": "3 Tags",
+				"description": "",
+				"image_url": "https://images.unsplash.com/photo-1618910562084-6e63cf1cd33e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjE1NDA1Njc&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					"Tag1",
+					"tag2",
+					"tag3"
+				],
+				"date": "2021-05-21 17:05",
+				"importance": "3"
+			},
+			{
+				"id": 16,
+				"title": "vlow",
+				"description": "",
+				"importance": "1",
+				"image_url": "/Reminder.svg",
+				"tags": [
+					"Tag1",
+					"tag2",
+					"tag3"
+				],
+				"date": "5/09/2021"
+			},
+			{
+				"id": 17,
+				"title": "low imp",
+				"description": "",
+				"importance": "2",
+				"image_url": "https://images.unsplash.com/photo-1620549040239-b44a37193579?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjE1NDEwOTg&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					"tag2",
+					"tag4",
+					"tag5"
+				],
+				"date": "5/10/2021"
+			},
+			{
+				"id": 18,
+				"title": "moderate",
+				"description": "",
+				"importance": "3",
+				"image_url": "https://images.unsplash.com/photo-1534197974138-8e4ef545b482?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjE1NDExMjU&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					"demo",
+					"test2",
+					"tag1"
+				],
+				"date": "5/11/2021"
+			},
+			{
+				"id": 19,
+				"title": "high",
+				"description": "",
+				"importance": "4",
+				"image_url": "https://images.unsplash.com/photo-1621479023827-725040845bf2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjE1NDExNTc&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					"tag2",
+					"tag3"
+				],
+				"date": "05/12/2021"
+			},
+			{
+				"id": 20,
+				"title": "vhigh",
+				"description": "",
+				"importance": "5",
+				"image_url": "/Reminder.svg",
+				"tags": [
+					"tag5",
+					"demo"
+				],
+				"date": "05/13/2021"
+			},
+			{
+				"id": 21,
+				"title": "test1234",
+				"description": "1234",
+				"importance": "2",
+				"image_url": "https://images.unsplash.com/photo-1576670159375-8beb7c963ead?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjE1NTczOTg&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
+				],
+				"date": "05/31/2021"
+			},
+			{
+				"id": 22,
+				"title": "no importance level",
+				"description": "",
+				"image_url": "https://images.unsplash.com/photo-1621478654947-499529690845?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjE1NTk1MzE&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					""
+				],
+				"date": "2021-05-31 18:12"
+			},
+			{
+				"id": 23,
+				"title": "test",
+				"description": "",
+				"importance": "5",
+				"image_url": "/Reminder.svg",
+				"tags": [
+					"test"
+				],
+				"date": ""
 			}
 		],
 		"avatar": "https://avatars.abstractapi.com/v1/?api_key=861a81cdc8b34deaa70d2c267e787c65&name=Cindy&image_size=60&char_limit=2&background_color=335eea&font_color=ffffff&is_rounded=true&is_uppercase=true",
@@ -207,7 +335,7 @@
 				"id": 1,
 				"title": "Cat Park",
 				"description": "big chonk at big park",
-				"completed": false,
+				"importance": false,
 				"image_url": "/Reminder.svg",
 				"subtasks": [],
 				"date": "05/12/2021",
@@ -229,7 +357,7 @@
 				"id": 1,
 				"title": "apple",
 				"description": "test",
-				"completed": false,
+				"importance": false,
 				"image_url": "https://images.unsplash.com/photo-1619909490011-5e4b5b6b8547?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA2OTg0MzY&ixlib=rb-1.2.1&q=80&w=1080",
 				"tags": "",
 				"subtasks": [],
@@ -239,7 +367,7 @@
 				"id": 2,
 				"title": "orange",
 				"description": "test orange",
-				"completed": false,
+				"importance": false,
 				"image_url": "https://images.unsplash.com/photo-1620554602048-63902824b560?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA2OTg0OTE&ixlib=rb-1.2.1&q=80&w=1080",
 				"tags": "",
 				"subtasks": [],

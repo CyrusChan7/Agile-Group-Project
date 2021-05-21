@@ -3,15 +3,39 @@ let update = require("../database").writeJSON;
 const fetch = require("node-fetch");
 const { calendarData, changeMonth } = require("../views/reminder/scripts/calendar")
 
+
+function sortTags(events) {
+  // Returns a list all tags and their occurence count for displayed events
+  let tagObj = {}
+  for (let i = 0; i < events.length; i++) {
+    for (let j = 0; j < events[i].tags.length; j++){
+      // We don't want to save empty strings (no tag)
+      if (events[i].tags[j] != "" ){
+        // if tag doesn't exist in object, add it. Otherwise add 1 to its value
+        if (events[i].tags[j] in tagObj) {
+          tagObj[events[i].tags[j]] ++;
+        } else {
+          tagObj[events[i].tags[j]] = 1;
+        }
+      }
+    }
+  }
+  let allTags = Object.entries(tagObj);
+  // sort tags based on occurence in descending order
+  return allTags.sort((a, b) => b[1] - a[1]);
+}
+
 let remindersController = {
-  // List out all the reminder
+  // Display all events
   list: (req, res) => {
+    sortedTags = sortTags(req.user.reminders);
     res.render("reminder/index", {
       user: req.user,
       reminders: req.user.reminders,
       database: database,
       friendIDs: req.user.friends.friendID,
       calendarData,
+      sortedTags,
     });
   },
 
@@ -47,23 +71,26 @@ let remindersController = {
 
     for (let i = 0; i < req.user.reminders.length; i++) {
       // if substring found
-      if (req.user.reminders[i].title.includes(userSearchTerm)) {
+
+      if (req.user.reminders[i].title.toLowerCase().includes(userSearchTerm.toLowerCase())) {
         searchResultsDatabase.push(req.user.reminders[i]);
       }
     }
+    sortedTags = sortTags(searchResultsDatabase);
     res.render("reminder/index", {
       user: req.user,
       reminders: searchResultsDatabase,
       database: database,
       friendIDs: req.user.friends.friendID,
       calendarData,
+      sortedTags,
     });
   },
 
   // Create a new reminder
   create: async (req, res) => {
     // const tempSubtasks = [];
-    const tempSubtasks = req.body.subtasks.split(",");
+//    const tempSubtasks = req.body.subtasks.split(",");
 
     let idNum = Number(1);
     if (req.user.reminders.length != 0) {
@@ -73,16 +100,18 @@ let remindersController = {
       id: idNum,
       title: req.body.title,
       description: req.body.description,
-      completed: false,
+      importance: req.body.importance,
       image_url: "",
-      tags: req.body.tags,
-      subtasks: tempSubtasks,
+      tags: req.body.tags.split(",").map(item=>item.trim()),
+//      subtasks: tempSubtasks,
       date: req.body.date.replace("T", " "),
     };
     //console.log(`DEBUG create tempSubtasks is: ${tempSubtasks}`)
     //console.log(typeof tempSubtasks);
 
     // Use Unsplash API to fetch images for reminders
+
+    /*
     const client_id = process.env.Unsplash_CLIENT_ID;
     const photos = await fetch(
       `https://api.unsplash.com/photos/random?query=${reminder.title}&client_id=${client_id}`
@@ -100,6 +129,11 @@ let remindersController = {
 
       req.user.reminders.push(reminder);
     }
+    */
+
+    reminder.image_url = "/Reminder.svg"
+    req.user.reminders.push(reminder);
+
     update()
     res.redirect("/reminders");
   },
@@ -110,21 +144,22 @@ let remindersController = {
     const searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
-    update()
+    // update()   // not necessary
     res.render("reminder/edit", { reminderItem: searchResult });
   },
 
   // Update a specific reminder
   update: (req, res) => {
     // Loop through all reminders and update the correct one (id)
-    const tempSubtasks = req.body.subtasks.split(",");
+
+    // const tempSubtasks = req.body.subtasks.split(",");
     req.user.reminders.forEach((reminder) => {
       if (String(reminder.id) === req.params.id) {
         reminder.title = req.body.title;
         reminder.description = req.body.description;
-        reminder.completed = req.body.completed == "true";
-        reminder.tags = req.body.tags;
-        reminder.subtasks = tempSubtasks;
+        reminder.importance = req.body.importance;
+        reminder.tags = req.body.tags.split(",").map(item=>item.trim());
+//        reminder.subtasks = tempSubtasks;
         reminder.date = req.body.date.replace("T", " ");
       }
       // console.log(`DEBUG update tempSubtasks is: ${tempSubtasks}`)
@@ -214,6 +249,52 @@ let remindersController = {
     let newMonth = new Date(calendarData.today.realDate.getFullYear(), calendarData.today.realDate.getMonth(), calendarData.today.realDate.getDate())
     changeMonth(newMonth)
     res.redirect("/reminders");
+  },
+  
+  tagFilter: (req, res) => {
+    // Filter events based on tag
+    let filteredEvents = []
+    const filter = req.query.tag;
+
+    for (let i = 0; i < req.user.reminders.length; i++) {
+      // if the event the tag, add it to a list
+      if (req.user.reminders[i].tags.includes(filter)) {
+        filteredEvents.push(req.user.reminders[i]);
+      }
+    }
+
+    sortedTags = sortTags(filteredEvents);
+    res.render("reminder/index", {
+      user: req.user,
+      reminders: filteredEvents,
+      database: database,
+      friendIDs: req.user.friends.friendID,
+      calendarData,
+      sortedTags,
+    });
+  },
+
+  impFilter: (req, res) => {
+    // Filter events based on tag
+    let filteredEvents = []
+    const filter = req.query.importance;
+
+    for (let i = 0; i < req.user.reminders.length; i++) {
+      // if the event the tag, add it to a list
+      if (req.user.reminders[i].importance === filter) {
+        filteredEvents.push(req.user.reminders[i]);
+      }
+    }
+
+    sortedTags = sortTags(filteredEvents);
+    res.render("reminder/index", {
+      user: req.user,
+      reminders: filteredEvents,
+      database: database,
+      friendIDs: req.user.friends.friendID,
+      calendarData,
+      sortedTags,
+    });
   },
 };
 

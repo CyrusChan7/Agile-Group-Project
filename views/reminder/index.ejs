@@ -35,9 +35,9 @@
             <div class="weather">
                 <h2 style="display: inline-block;" id="temp"></h2 > <h2 style="display: inline-block;">C</h2>
                 <h4 id="description"></h4>
-                <a href="/prevMonth" class="btn btn-primary"> PREV MONTH </a>
-                <a href="/resetMonth" class="btn btn-primary"> RESET MONTH </a>
-                <a href="/nextMonth" class="btn btn-primary"> NEXT MONTH </a>
+                <a href="/prevMonth" class="btn btn-primary">Prev Month</a>
+                <a href="/resetMonth" class="btn btn-primary">Current Month</a>
+                <a href="/nextMonth" class="btn btn-primary">Next Month</a>
             </div>
             
         </div>
@@ -77,8 +77,20 @@
                             <div><a href="/reminders/date/<%= dateString %>"><%= remindersOfTheDay.length %> events</a></div>
                             <% } else { 
                                 for (reminder of remindersOfTheDay) { %>
-                                    <div><a href="/reminder/<%= reminder.id%>"><%= reminder.title %></a></div>
-                            <% }} %>
+                                    <% if (reminder.importance === '1') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-secondary"><%= reminder.title %></a></div>
+                                    <% } else if (reminder.importance === '2') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-success"><%= reminder.title %></a></div>
+                                    <% } else if (reminder.importance === '3') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-primary"><%= reminder.title %></a></div>
+                                    <% } else if (reminder.importance === '4') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-warning"><%= reminder.title %></a></div>
+                                    <% } else if (reminder.importance === '5') { %>
+                                        <div><a href="/reminder/<%= reminder.id%>" class="badge badge-danger"><%= reminder.title %></a></div>
+                                    <% } else { %>
+                                        <div><a href="/reminder/<%= reminder.id%>"><%= reminder.title %></a></div>
+                                    
+                            <% }}} %>
 
                     </div>
 
@@ -99,30 +111,60 @@
         <button class="search-btn" type="submit">Search</button>
     </form>
 
+    <form action="/reminders/importance" method="GET">
+        <label for="importance">Filter by importance: </label>
+        <select name="importance" id="importance">
+            <option value="1">Very Low Importance</option>
+            <option value="2">Low Importance</option>
+            <option value="3">Moderate Importance</option>
+            <option value="4">High Importance</option>
+            <option value="5">Very High Importance</option>
+        </select>
+        <input type="submit" value="Filter">
+    </form>
 
+    <form action="/reminders/tag" method="GET">
+    <% if (sortedTags.length > 0) {
+        for (i=0; i < sortedTags.length; i++){ %>
+            <button class="imp-tag badge badge-info" name="tag" type="submit" value="<%= sortedTags[i][0]%>"><%= sortedTags[i][0] + " : " + sortedTags[i][1]%></button>
+    <% }} %>
+    </form>
+    <a href="/reminders" class="imp-tag badge badge-light">Clear filter</a>
     <ul class="list-group">
         <% reminders.forEach(function (reminderItem) { %>
             <li class="list-group-item">
                 <img src=<%=reminderItem.image_url %> alt=
                 <%= reminderItem.title %> style="width:50px; height:50px;">
-
+                <span>
+                
                     <strong><%= reminderItem.title %>: </strong>
                     <%= reminderItem.description %>
                         || Date:
                         <%= reminderItem.date %>
-                            || Tags: (<%= reminderItem.tags %>) || Importance:
-                                <% if (reminderItem.completed == true) { %>
-                                    <span class="badge badge-success">Low</span>
-                                    <% } else if (reminderItem.completed == false) { %>
-                                        <span class="badge badge-danger">Important</span>
-                                        <% } %>
-                                            <a class="pull-right" href=<%="/reminder/" + reminderItem.id %>>View</a>
+                            || Tags: <% for (tag of reminderItem.tags) {
+                                if (tag !== "") { %>
+                                    <span class="badge badge-info"><%=tag%></span>
+                                <% }} %>  
+                            <!-- (<%= reminderItem.tags %>) -->
+                            <a class="pull-right" href=<%="/reminder/" + reminderItem.id %>>View</a><br>
+                                <% if (reminderItem.importance === '1') { %>
+                                        <span class="imp-tag badge badge-secondary">Very Low Importance</span>
+                                    <% } else if (reminderItem.importance === '2') { %>
+                                        <span class="imp-tag badge badge-success">Low Importance</span>
+                                    <% } else if (reminderItem.importance === '3') { %>
+                                        <span class="imp-tag badge badge-primary">Moderate Importance</span>
+                                    <% } else if (reminderItem.importance === '4') { %>
+                                        <span class="imp-tag badge badge-warning">High Importance</span>
+                                    <% } else if (reminderItem.importance === '5') { %>
+                                        <span class="imp-tag badge badge-danger">Very High Importance</span>
+                                    <% } %>
+                                            
+                </span>
+
             </li>
             <% }) %>
     </ul>
-
-    
-    
+       
     <!-- Friends' reminders -->
 
     <% if(friendIDs.length > 0){%>
@@ -148,9 +190,9 @@
                                         || Date:
                                         <%= reminderItem.date %>
                                             || Tags: (<%= reminderItem.tags %>) || Importance:
-                                                <% if (reminderItem.completed == true) { %>
+                                                <% if (reminderItem.importance == true) { %>
                                                     <span class="badge badge-success">Low</span>
-                                                    <% } else if (reminderItem.completed == false) { %>
+                                                    <% } else if (reminderItem.importance == false) { %>
                                                         <span class="badge badge-danger">Important</span>
                                                         <% } %>
                             </li>

@@ -1,21 +1,23 @@
+<!-- <% let reminder = JSON.stringify(reminderItem) %> -->
 <div class="container">
   <h1 class="page-header">Edit Event</h1>
   <form action=<%= "/reminder/update/" + reminderItem.id %> method="POST">
 
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" name="title" class="form-control" id="titleInput" placeholder="Enter title" value="<%= reminderItem.title %>">
+      <input type="text" name="title" class="form-control" id="titleInput" placeholder="Enter title" value="<%= reminderItem.title %>" maxlength="100">
     </div>
 
     <div class="form-group">
       <label for="description">Description</label>
-      <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter description" name="description"><%= reminderItem.description %></textarea>
+      <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter description" name="description" maxlength="10000"><%= reminderItem.description %></textarea>
     </div>
-
+<!--
     <div class="form-group">
       <label for="subtasks">Subtasks</label>
       <textarea style="white-space: pre-line" class="form-control" id="subtasksInput" rows="3" placeholder="Enter subtasks, separated by a comma" name="subtasks"><%= reminderItem.subtasks %></textarea>
     </div>
+-->
 
     <div class="form-group">
       <label for="tags">Tags</label>
@@ -24,33 +26,92 @@
 
     <div class="form-group">
       <label for="date">Date</label>
-      <input type="datetime-local" id="dateInput" name="date" name="date" placeholder="MM/DD/YYYY" value="<%= reminderItem.date %>">
+      <input type="datetime-local" id="dateInput" name="date" name="date" placeholder="MM/DD/YYYY">
     </div>
 
     <div class="form-group">
-      <label for="completed">Importance</label>
+      <label for="importance">Importance</label>
+      <div class="radio">
+        <input type="radio" id="imp-1" value="1" name="importance">
+        <label for="imp-1">Very Low Importance</label>
+      </div>
+      <div class="radio">
+        <input type="radio" id="imp-2" value="2" name="importance">
+        <label for="imp-2">Low Importance</label>
+      </div>
+      <div class="radio">
+        <input type="radio" id="imp-3" value="3" name="importance">
+        <label for="imp-3">Moderate Importance</label>
+      </div>
+      <div class="radio">
+        <input type="radio" id="imp-4" value="4" name="importance">
+        <label for="imp-4">High Importance</label>
+      </div>
+      <div class="radio">
+        <input type="radio" id="imp-5" value="5" name="importance">
+        <label for="imp-5">Very High Importance</label>
+      </div>
+    </div>
+    <!-- <div class="form-group">
+      <label for="importance">Importance</label>
       <div class="radio">
         <label>
-          <% if (reminderItem.completed == true) { %>
-            <input type="radio" name="completed" id="true" value="true" checked="checked">
+          <% if (reminderItem.importance === true) { %>
+            <input type="radio" name="importance" id="true" value="true" checked="checked">
           <% } else { %>
-            <input type="radio" name="completed" id="true" value="true">
+            <input type="radio" name="importance" id="true" value="true">
           <% } %>
           Low
         </label>
       </div>
       <div class="radio">
         <label>
-          <% if (reminderItem.completed == false) { %>
-            <input type="radio" name="completed" id="false" value="false" checked="checked">
+          <% if (reminderItem.importance === false) { %>
+            <input type="radio" name="importance" id="false" value="false" checked="checked">
           <% } else { %>
-            <input type="radio" name="completed" id="false" value="false">
+            <input type="radio" name="importance" id="false" value="false">
           <% } %>
           High
         </label>
       </div>
-    </div>
+    </div> -->
+
+
     <button type="submit" class="btn btn-outline-primary">Submit</button>
     <a href="/reminders" class="btn btn-outline-primary">Cancel</a>
   </form>
 </div>
+
+<script>
+  let reminderStr = '<%- JSON.stringify(reminderItem) %>'
+  let reminder = JSON.parse(reminderStr)
+  let titleInput = document.querySelector("#titleInput")
+  titleInput.value = reminder.title
+  let descriptionInput = document.querySelector("#descriptionInput")
+  descriptionInput.textContent = reminder.description
+  let dateInput = document.querySelector("#dateInput")
+  let dateString = reminder.date.replace(" ", "T")
+  dateInput.value = dateString
+  // console.log(dateString)
+
+  let importanceRadio = ''
+  switch (reminder.importance) {
+    case '1':
+      importanceRadio = document.querySelector('#imp-1')
+      break
+    case '2':
+      importanceRadio = document.querySelector('#imp-2')
+      break
+    case '3':
+      importanceRadio = document.querySelector('#imp-3')
+      break
+    case '4':
+      importanceRadio = document.querySelector('#imp-4')
+      break
+    case '5':
+      importanceRadio = document.querySelector('#imp-5')
+      break
+  }
+  importanceRadio.checked = 'checked'
+  
+</script>

@@ -61,6 +61,10 @@ app.post("/reminder/delete/:id", ensureAuthenticated, reminderController.delete)
 
 app.get("/reminders/search?:search", ensureAuthenticated, reminderController.searchBarResults);
 
+app.get("/reminders/tag?:tag", ensureAuthenticated, reminderController.tagFilter);
+
+app.get("/reminders/importance?:importance", ensureAuthenticated, reminderController.impFilter);
+
 // Changes Calendar month
 app.get("/nextMonth", reminderController.nextMonth)
 app.get("/resetMonth", reminderController.resetMonth)
@@ -94,6 +98,7 @@ app.get("/logout", (req, res) => {
 })
 
 // Set and use port 3001
+
 app.listen(port, function() {
     console.log(
         "Server running. Visit: localhost:3001/reminders in your browser 🚀"

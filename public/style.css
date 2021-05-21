@@ -5,6 +5,7 @@
 
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.1rem;
 }
 
 h1,
@@ -156,6 +157,7 @@ footer.footer {
 
 .calendar-wrapper {
   margin-bottom: 1rem;
+  min-width: 800px;
   box-sizing: border-box;
   border-radius: 8px;
   background-color: powderblue;
@@ -249,11 +251,25 @@ footer.footer {
 }
 
 .list-group-item {
+  display: flex;
+  column-gap: 1rem;
+  align-items: center;
   background-color: aliceblue;
   margin-bottom: 0.5rem;
   border-radius: 10px;
+  font-size: 1.2rem;
 }
 
 .pull-right {
   color: blue;
+}
+
+.event-details {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.flex-row {
+  min-height: 5rem;
 }
