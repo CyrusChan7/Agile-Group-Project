@@ -89,7 +89,7 @@
   let descriptionInput = document.querySelector("#descriptionInput")
   descriptionInput.textContent = reminder.description
   let dateInput = document.querySelector("#dateInput")
-  let dateString = reminder.date.split(' ')[0] + 'T' + reminder.date.split(' ')[1]
+  let dateString = reminder.date.replace(" ", "T")
   dateInput.value = dateString
   // console.log(dateString)
 
