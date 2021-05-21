@@ -109,22 +109,22 @@ let remindersController = {
 
     // Use Unsplash API to fetch images for reminders
     const client_id = process.env.Unsplash_CLIENT_ID;
-    const photos = await fetch(
-      `https://api.unsplash.com/photos/random?query=${reminder.title}&client_id=${client_id}`
-    );
+    // const photos = await fetch(
+    //   `https://api.unsplash.com/photos/random?query=${reminder.title}&client_id=${client_id}`
+    // );
 
-    const parsedPhotos = await photos.json();
+    // const parsedPhotos = await photos.json();
 
-    if ("errors" in parsedPhotos) {
-      console.log("ERROR: Cannot find image!");
+    // if ("errors" in parsedPhotos) {
+    //   console.log("ERROR: Cannot find image!");
       reminder.image_url = "/Reminder.svg";
       req.user.reminders.push(reminder);
-    } else {
+    // } else {
       // Save the URL into reminder object
-      reminder.image_url = parsedPhotos.urls.regular;
+      // reminder.image_url = parsedPhotos.urls.regular;
 
-      req.user.reminders.push(reminder);
-    }
+      // req.user.reminders.push(reminder);
+    // }
     update()
     res.redirect("/reminders");
   },
