@@ -110,6 +110,8 @@ let remindersController = {
     //console.log(typeof tempSubtasks);
 
     // Use Unsplash API to fetch images for reminders
+
+    /*
     const client_id = process.env.Unsplash_CLIENT_ID;
     const photos = await fetch(
       `https://api.unsplash.com/photos/random?query=${reminder.title}&client_id=${client_id}`
@@ -127,6 +129,11 @@ let remindersController = {
 
       req.user.reminders.push(reminder);
     }
+    */
+
+    reminder.image_url = "/Reminder.svg"
+    req.user.reminders.push(reminder);
+
     update()
     res.redirect("/reminders");
   },
