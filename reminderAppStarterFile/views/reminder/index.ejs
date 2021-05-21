@@ -87,9 +87,10 @@
                                         <div><a href="/reminder/<%= reminder.id%>" class="badge badge-warning"><%= reminder.title %></a></div>
                                     <% } else if (reminder.importance === '5') { %>
                                         <div><a href="/reminder/<%= reminder.id%>" class="badge badge-danger"><%= reminder.title %></a></div>
-                                    <% } %>
+                                    <% } else { %>
+                                        <div><a href="/reminder/<%= reminder.id%>"><%= reminder.title %></a></div>
                                     
-                            <% }} %>
+                            <% }}} %>
 
                     </div>
 
