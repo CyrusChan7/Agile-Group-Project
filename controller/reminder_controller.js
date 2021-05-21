@@ -3,6 +3,7 @@ let update = require("../database").writeJSON;
 const fetch = require("node-fetch");
 const { calendarData, changeMonth } = require("../views/reminder/scripts/calendar")
 
+
 function sortTags(events) {
   // Returns a list all tags and their occurence count for displayed events
   let tagObj = {}
@@ -70,6 +71,7 @@ let remindersController = {
 
     for (let i = 0; i < req.user.reminders.length; i++) {
       // if substring found
+
       if (req.user.reminders[i].title.toLowerCase().includes(userSearchTerm.toLowerCase())) {
         searchResultsDatabase.push(req.user.reminders[i]);
       }
@@ -142,6 +144,7 @@ let remindersController = {
   // Update a specific reminder
   update: (req, res) => {
     // Loop through all reminders and update the correct one (id)
+
     // const tempSubtasks = req.body.subtasks.split(",");
     req.user.reminders.forEach((reminder) => {
       if (String(reminder.id) === req.params.id) {
@@ -240,7 +243,7 @@ let remindersController = {
     changeMonth(newMonth)
     res.redirect("/reminders");
   },
-
+  
   tagFilter: (req, res) => {
     // Filter events based on tag
     let filteredEvents = []

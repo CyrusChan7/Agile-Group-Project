@@ -7,6 +7,7 @@ const ejsLayouts = require("express-ejs-layouts");
 const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
 const { ensureAuthenticated, forwardAuthenticated } = require("./middleware/checkAuth");
+const port = process.env.PORT || 3001;
 
 // Session
 const session = require("express-session");
@@ -97,7 +98,8 @@ app.get("/logout", (req, res) => {
 })
 
 // Set and use port 3001
-app.listen(3001, function() {
+
+app.listen(port, function() {
     console.log(
         "Server running. Visit: localhost:3001/reminders in your browser 🚀"
     );
