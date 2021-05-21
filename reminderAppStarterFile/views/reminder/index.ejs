@@ -125,10 +125,10 @@
     <form action="/reminders/tag" method="GET">
     <% if (sortedTags.length > 0) {
         for (i=0; i < sortedTags.length; i++){ %>
-            <button class="imp-tag badge badge-primary" name="tag" type="submit" value="<%= sortedTags[i][0]%>"><%= sortedTags[i][0] + " : " + sortedTags[i][1]%></button>
+            <button class="imp-tag badge badge-info" name="tag" type="submit" value="<%= sortedTags[i][0]%>"><%= sortedTags[i][0] + " : " + sortedTags[i][1]%></button>
     <% }} %>
     </form>
-    <a href="/reminders" class="imp-tag badge badge-secondary">Clear filter</a>
+    <a href="/reminders" class="imp-tag badge badge-light">Clear filter</a>
     <ul class="list-group">
         <% reminders.forEach(function (reminderItem) { %>
             <li class="list-group-item">
@@ -139,7 +139,11 @@
                     <%= reminderItem.description %>
                         || Date:
                         <%= reminderItem.date %>
-                            || Tags: (<%= reminderItem.tags %>)
+                            || Tags: <% for (tag of reminderItem.tags) {
+                                if (tag !== "") { %>
+                                    <span class="badge badge-info"><%=tag%></span>
+                                <% }} %>  
+                            <!-- (<%= reminderItem.tags %>) -->
                             <a class="pull-right" href=<%="/reminder/" + reminderItem.id %>>View</a><br>
                                 <% if (reminderItem.importance === '1') { %>
                                         <span class="imp-tag badge badge-secondary">Very Low Importance</span>
