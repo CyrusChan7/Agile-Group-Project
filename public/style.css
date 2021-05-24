@@ -241,6 +241,7 @@ footer.footer {
   opacity: 80%;
 }
 
+
 .search-btn {
   border: none;
   border-radius: 5px;
@@ -272,4 +273,45 @@ footer.footer {
 }
 .flex-row {
   min-height: 5rem;
+}
+
+
+
+.fa-facebook {
+ color: #e6abb0;
+ cursor: pointer;
+ transition: background 0.1s ease-in-out;
+}
+
+.fa-facebook:hover {
+  color: #4267B2;
+}
+
+.fa-twitter {
+  color:#e6abb0;
+}
+
+.fa-twitter:hover {
+  color:#1da1f2;
+}
+
+.fa-instagram {
+  color: #e6abb0;
+}
+
+.fa-instagram:hover {
+  color: 8a49a1;
+}
+
+.footer {
+  background-color:#b0e0e6;
+}
+
+/* a.navbar-brand {
+  font-family: 
+} */
+
+.testimonials.text-center {
+
+  background-color: #d7eff2;
 }
