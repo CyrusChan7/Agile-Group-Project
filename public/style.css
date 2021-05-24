@@ -280,7 +280,7 @@ footer.footer {
 .fa-facebook {
  color: #e6abb0;
  cursor: pointer;
- transition: background 0.1s ease-in-out;
+ transition: color 0.5s ease-in-out;
 }
 
 .fa-facebook:hover {
@@ -289,6 +289,7 @@ footer.footer {
 
 .fa-twitter {
   color:#e6abb0;
+  transition: color 0.5s ease-in-out;
 }
 
 .fa-twitter:hover {
@@ -297,6 +298,7 @@ footer.footer {
 
 .fa-instagram {
   color: #e6abb0;
+  transition: color 0.5s ease-in-out;
 }
 
 .fa-instagram:hover {
@@ -306,10 +308,6 @@ footer.footer {
 .footer {
   background-color:#b0e0e6;
 }
-
-/* a.navbar-brand {
-  font-family: 
-} */
 
 .testimonials.text-center {
 
