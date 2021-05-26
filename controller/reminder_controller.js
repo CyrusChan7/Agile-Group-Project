@@ -27,22 +27,24 @@ function sortTags(events) {
 
 function formatDate(eventDateStr) {
 
-  let eventDateFormatted = ""
   let eventDate = new Date(eventDateStr)
+
+  if (eventDateStr === "") {
+    return ""
+  }
 
   if (eventDateStr.indexOf("T") === -1) {
     let eventYear = eventDateStr.split("/")[2]
     if (eventYear.length > 4) {   // time format: MM/DD/YYYY hh:mm
-      eventDateFormatted = eventDate.toLocaleString('en-US')
+      return eventDate.toLocaleString('en-US')
     } else {    // time format: MM/DD/YYYY
-      eventDateFormatted = eventDate.toLocaleString('en-US').split(",")[0]
+      return eventDate.toLocaleString('en-US').split(",")[0]
     }
 
   } else {
-    eventDateFormatted = eventDate.toLocaleString('en-US')
+    return eventDate.toLocaleString('en-US')
   }
 
-  return eventDateFormatted
 }
 
 let remindersController = {
