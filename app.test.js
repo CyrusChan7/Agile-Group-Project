@@ -36,7 +36,7 @@ describe("Mock event creation", function () {
         expect(db[0].reminders[reminderLen].description).toEqual("feed her before tomorrow")
         expect(db[0].reminders[reminderLen].importance).toEqual("5")
         // expect(db[0].reminders[reminderLen].subtasks).toEqual([""])
-        expect(db[0].reminders[reminderLen].date).toEqual("05/20/2021")
+        expect(db[0].reminders[reminderLen].date).toEqual("5/20/2021")
         expect(db[0].reminders[reminderLen].tags).toEqual(["Delicious food"])
         expect(db[0].reminders.length).toEqual(reminderLen + 1);
       })
@@ -65,7 +65,7 @@ describe("Mock event creation 2", function () {
         expect(db[0].reminders[reminderLen].description).toEqual("feed her before sunset")
         expect(db[0].reminders[reminderLen].importance).toEqual("5")
         // expect(db[0].reminders[reminderLen].subtasks).toEqual(["it", " needs", " happen", " quite", " soon"])
-        expect(db[0].reminders[reminderLen].date).toEqual("05/21/2021")
+        expect(db[0].reminders[reminderLen].date).toEqual("5/21/2021")
         expect(db[0].reminders[reminderLen].tags).toEqual(["Delicious", "food", "at", "my", "fingertips"])
         expect(db[0].reminders.length).toEqual(reminderLen + 1);
       })
@@ -123,7 +123,7 @@ describe("Mock event creation 4", function () {
         expect(db[0].reminders[reminderLen].description).toEqual("")
         expect(db[0].reminders[reminderLen].importance).toEqual("1")
         // expect(db[0].reminders[reminderLen].subtasks).toEqual([""])
-        expect(db[0].reminders[reminderLen].date).toEqual("05/22/2021")
+        expect(db[0].reminders[reminderLen].date).toEqual("5/22/2021")
         expect(db[0].reminders[reminderLen].tags).toEqual([""])
         expect(db[0].reminders.length).toEqual(reminderLen + 1);
       })
@@ -152,7 +152,7 @@ describe("Mock event creation 5", function () {
         expect(db[0].reminders[reminderLen].description).toEqual("feed her before sunset")
         expect(db[0].reminders[reminderLen].importance).toEqual("2")
         // expect(db[0].reminders[reminderLen].subtasks).toEqual(["it", " needs", " happen", " quite", " soon"])
-        expect(db[0].reminders[reminderLen].date).toEqual("05/21/2021")
+        expect(db[0].reminders[reminderLen].date).toEqual("5/21/2021")
         expect(db[0].reminders[reminderLen].tags).toEqual(["Delicious", "food", "at", "my", "fingertips"])
         expect(db[0].reminders.length).toEqual(reminderLen + 1);
       })
@@ -181,7 +181,7 @@ describe("Mock event creation 6", function () {
         expect(db[0].reminders[reminderLen].description).toEqual("feed her before sunset")
         expect(db[0].reminders[reminderLen].importance).toEqual("4")
         // expect(db[0].reminders[reminderLen].subtasks).toEqual(["it", " needs", " happen", " quite", " soon"])
-        expect(db[0].reminders[reminderLen].date).toEqual("05/21/2021")
+        expect(db[0].reminders[reminderLen].date).toEqual("5/21/2021")
         expect(db[0].reminders[reminderLen].tags).toEqual(["Delicious", "food", "at", "my", "fingertips"])
         expect(db[0].reminders.length).toEqual(reminderLen + 1);
       })

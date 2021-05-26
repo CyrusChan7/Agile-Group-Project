@@ -25,6 +25,28 @@ function sortTags(events) {
   return allTags.sort((a, b) => b[1] - a[1]);
 }
 
+function formatDate(eventDateStr) {
+
+  let eventDate = new Date(eventDateStr)
+
+  if (eventDateStr === "") {
+    return ""
+  }
+
+  if (eventDateStr.indexOf("T") === -1) {
+    let eventYear = eventDateStr.split("/")[2]
+    if (eventYear.length > 4) {   // time format: MM/DD/YYYY hh:mm
+      return eventDate.toLocaleString('en-US')
+    } else {    // time format: MM/DD/YYYY
+      return eventDate.toLocaleString('en-US').split(",")[0]
+    }
+
+  } else {  // chrome date format YYYY-MM-DDThh:mm
+    return eventDate.toLocaleString('en-US')
+  }
+
+}
+
 let remindersController = {
   // Display all events
   list: (req, res) => {
@@ -104,7 +126,7 @@ let remindersController = {
       image_url: "",
       tags: req.body.tags.split(",").map(item=>item.trim()),
 //      subtasks: tempSubtasks,
-      date: req.body.date.replace("T", " "),
+      date: formatDate(req.body.date)  //req.body.date.replace("T", " "),
     };
     //console.log(`DEBUG create tempSubtasks is: ${tempSubtasks}`)
     //console.log(typeof tempSubtasks);
@@ -160,7 +182,7 @@ let remindersController = {
         reminder.importance = req.body.importance;
         reminder.tags = req.body.tags.split(",").map(item=>item.trim());
 //        reminder.subtasks = tempSubtasks;
-        reminder.date = req.body.date.replace("T", " ");
+        reminder.date = formatDate(req.body.date)  // req.body.date.replace("T", " ");
       }
       // console.log(`DEBUG update tempSubtasks is: ${tempSubtasks}`)
       // console.log(typeof tempSubtasks);
@@ -210,9 +232,6 @@ let remindersController = {
 
   listEventOfTheDay: (req, res) => {
     const dateString = req.params.date
-    const year = dateString.slice(0,4)
-    const month = dateString.slice(4,6)
-    const date = dateString.slice(6,8)
     const reminders = req.user.reminders
 
     const reminderOfTheDay = reminders.filter((reminder) => {
