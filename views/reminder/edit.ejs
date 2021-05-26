@@ -90,8 +90,24 @@
   let descriptionInput = document.querySelector("#descriptionInput")
   descriptionInput.textContent = reminder.description
   let dateInput = document.querySelector("#dateInput")
-  let dateString = reminder.date.replace(" ", "T")
-  dateInput.value = dateString
+
+  let dateString = reminder.date
+  let dateStringFormatted = ""
+
+  let eventDate = new Date(dateString)
+
+  if (navigator.userAgent.includes("Chrome")) {
+    let eventDateYear = eventDate.getFullYear()
+    let eventDateMonth = String(eventDate.getMonth() + 1).padStart(2, "0")
+    let eventDateDay = String(eventDate.getDate()).padStart(2, "0")
+    let eventDateHour = String(eventDate.getHours()).padStart(2, "0")
+    let eventDateMinute = String(eventDate.getMinutes()).padStart(2, "0")
+    dateStringFormatted = `${eventDateYear}-${eventDateMonth}-${eventDateDay}T${eventDateHour}:${eventDateMinute}`
+  } else if (navigator.userAgent.includes("Firefox")) {
+    dateStringFormatted = dateString
+  }
+  console.log(dateStringFormatted)
+  dateInput.value = dateStringFormatted
   // console.log(dateString)
 
   let importanceRadio = ''
