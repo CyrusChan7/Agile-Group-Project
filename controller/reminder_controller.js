@@ -41,7 +41,7 @@ function formatDate(eventDateStr) {
       return eventDate.toLocaleString('en-US').split(",")[0]
     }
 
-  } else {
+  } else {  // chrome date format YYYY-MM-DDThh:mm
     return eventDate.toLocaleString('en-US')
   }
 
