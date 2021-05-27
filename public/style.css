@@ -209,7 +209,7 @@ footer.footer {
   background-color: aliceblue;
 }
 
-.calendar-day:nth-child(7) {
+.calendar-day:nth-child(1) {
   color: red;
 }
 
