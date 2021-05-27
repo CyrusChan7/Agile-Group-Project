@@ -164,44 +164,4 @@
             </li>
             <% }) %>
     </ul>
-       
-    <!-- Friends' reminders -->
-
-    <% if(friendIDs.length > 0){%>
-        <br><br>
-        <h2 class="page-header">My Friends' Events</h2>
-        <% }%>
-
-
-            <ul class="list-group">
-
-                <% database.forEach((friend)=> { %>
-                    <% if (friendIDs.includes(String(friend.id))) {%>
-                        <h3 class="page-header">
-                            <%=friend.name %>
-                        </h3>
-                        <% friend.reminders.forEach(reminderItem => { %>
-                            <li class="list-group-item">
-                                <img src=<%=reminderItem.image_url %> alt=
-                                <%= reminderItem.title %> style="width:50px; height:50px;">
-
-                                    <strong><%= reminderItem.title %>: </strong>
-                                    <%= reminderItem.description %>
-                                        || Date:
-                                        <%= reminderItem.date %>
-                                            || Tags: (<%= reminderItem.tags %>) || Importance:
-                                                <% if (reminderItem.importance == true) { %>
-                                                    <span class="badge badge-success">Low</span>
-                                                    <% } else if (reminderItem.importance == false) { %>
-                                                        <span class="badge badge-danger">Important</span>
-                                                        <% } %>
-                            </li>
-
-
-                            <% });%>
-                                <% }; %>
-                                    <% }) %>
-            </ul>
-
-
 </div>
