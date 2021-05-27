@@ -18,12 +18,11 @@ function drawWeather(d) {
     document.getElementById('description').innerHTML = description;
     document.getElementById('temp').innerHTML = celcius + '&deg;';
     document.getElementById('location').innerHTML = d.name;
-
     if (description.indexOf('rain') > 0) {
         calendar_picture.classList.add("rainy");
     } else if (description.indexOf('cloud') > 0) {
         calendar_picture.classList.add("cloudy");
-    } else if (description.indexOf('sunny') > 0) {
+    } else if (description.indexOf('sunny') > 0 || description.includes("clear") ){
         calendar_picture.classList.add("sunny");
     }
 }
