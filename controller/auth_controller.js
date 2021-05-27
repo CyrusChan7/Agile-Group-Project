@@ -1,11 +1,6 @@
 let database = require("../database");
 let update = require("../database").writeJSON;
-const express = require("express");
-const { getUserByEmailIdAndPassword } = require("./userController");
-const path = require("path");
-const { default: fetch } = require("node-fetch");
-const { calendarData } = require("../views/reminder/scripts/calendar")
-
+const { calendarData } = require("../views/event/scripts/calendar")
 
 let authController = {
     login: (req, res) => {
@@ -38,7 +33,7 @@ let authController = {
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
-            reminders: [],
+            events: [],
             avatar: "",
             friends: { friendID: [] }
         };
@@ -72,9 +67,9 @@ let authController = {
 
         // console.log(req.user)
 
-        res.render("reminder/index", {
+        res.render("event/index", {
             user: req.user,
-            reminders: req.user.reminders,
+            events: req.user.events,
             database: database.Database,
             friendIDs: req.user.friends.friendID,
             calendarData,

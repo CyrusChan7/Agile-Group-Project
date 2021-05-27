@@ -1,4 +1,4 @@
-# Reminder-App-Group-Proj
+# event-App-Group-Proj
 # ACIT2520 Developing Web Applications
 
 # Group Members List
@@ -13,7 +13,7 @@
 # <Breakdown of works>
 ## Sprint 1 (due by 3/23)
 Leo Li
-1. Implemented reminder update functionality
+1. Implemented event update functionality
 
 I also needed to research on Youtube and Google the following things:
 1. Convert a string "true" / "false" into Boolean value
@@ -26,25 +26,25 @@ Dieu Hoang (Brian) Lam
 1. Implemented passport local strategy (completed task with Bryan Rainbow)
 
 Cyrus Chan
-1. Implemented the ability for users to delete their reminders  
+1. Implemented the ability for users to delete their events  
 
 ---
 
 ## Sprint 2 (due by 3/28)
 Leo Li
-1. Coded to fetched random images from Unsplash API for each reminders (using title as keyword); show them in all reminders and list-one view
-2. Add a default image to the reminder if no photo is found on Unspash
+1. Coded to fetched random images from Unsplash API for each events (using title as keyword); show them in all events and list-one view
+2. Add a default image to the event if no photo is found on Unspash
   
 Cyrus Chan
-1. Implemented the ability to add tags when creating a reminder, and the ability to edit tags when editing a reminder (completed task with Brian Lam)
-2. Implemented the ability to search for reminders by their title names (completed task with Bryan Rainbow)  
+1. Implemented the ability to add tags when creating a event, and the ability to edit tags when editing a event (completed task with Brian Lam)
+2. Implemented the ability to search for events by their title names (completed task with Bryan Rainbow)  
 
 I had to research how to split a string by a string character and then operate on the various separated strings.
 
 Bryan Rainbow
 1. Added Logout feature
-2. Merged user database with reminder database (users have reminders now)
-3. Updated code to display current users reminders instead of always showing cindys
+2. Merged user database with event database (users have events now)
+3. Updated code to display current users events instead of always showing cindys
 
 ---
 ## Sprint 3 (due by 4/5)
@@ -54,7 +54,7 @@ Leo Li
 Research on encodeURIComponent() (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
 
 Bryan Rainbow
-1. Helped with some of the reminder search feature
+1. Helped with some of the event search feature
 
 I also needed to research on Youtube and Google the following things:
 https://flaviocopes.com/express-get-query-variables/
@@ -65,7 +65,7 @@ https://www.w3schools.com/howto/howto_css_searchbar.asp
 ## Sprint 4 (due by 4/16)
 Leo Li
 1. Coded the add friends functionality (able to select from a list of users)
-2. Coded to display friends' reminders (read-only)
+2. Coded to display friends' events (read-only)
 
 I research below from Google:
 Break a foreach function with "return" keyword as it is not a for-loop

@@ -6,7 +6,7 @@
     <h2 class="page-header"> Friends List </h2>
 
 
-    <form action="/reminder/addFriends" method="GET">
+    <form action="/event/addFriends" method="GET">
 
         <% database.forEach(function (friend) { %>
             <%  if (friend.id === user.id){ return; } %>

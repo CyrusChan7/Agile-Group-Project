@@ -11,7 +11,7 @@ module.exports = {
       if (!req.isAuthenticated()) {
         return next();
       }
-      res.redirect("/reminders");
+      res.redirect("/events");
     },
   };
   

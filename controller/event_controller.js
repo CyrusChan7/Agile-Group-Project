@@ -1,7 +1,7 @@
 let database = require("../database").Database;
 let update = require("../database").writeJSON;
 const fetch = require("node-fetch");
-const { calendarData, changeMonth } = require("../views/reminder/scripts/calendar")
+const { calendarData, changeMonth } = require("../views/event/scripts/calendar")
 
 
 function sortTags(events) {
@@ -47,13 +47,13 @@ function formatDate(eventDateStr) {
 
 }
 
-let remindersController = {
+let eventsController = {
   // Display all events
   list: (req, res) => {
-    sortedTags = sortTags(req.user.reminders);
-    res.render("reminder/index", {
+    sortedTags = sortTags(req.user.events);
+    res.render("event/index", {
       user: req.user,
-      reminders: req.user.reminders,
+      events: req.user.events,
       database: database,
       friendIDs: req.user.friends.friendID,
       calendarData,
@@ -62,22 +62,22 @@ let remindersController = {
   },
 
   new: (req, res) => {
-    res.render("reminder/create");
+    res.render("event/create");
     // console.log(req.user);
   },
 
   listOne: (req, res) => {
-    // List only one reminder
-    const reminderToFind = req.params.id;
-    const searchResult = req.user.reminders.find(function (reminder) {
-      return reminder.id == reminderToFind;
+    // List only one event
+    const eventToFind = req.params.id;
+    const searchResult = req.user.events.find(function (event) {
+      return event.id == eventToFind;
     });
     if (searchResult != undefined) {
-      res.render("reminder/single-reminder", { reminderItem: searchResult });
+      res.render("event/single-event", { eventItem: searchResult });
     } else {
-      res.render("reminder/index", {
+      res.render("event/index", {
         user: req.user,
-        reminders: req.user.reminders,
+        events: req.user.events,
         database: database,
         friendIDs: req.user.friends.friendID,
       });
@@ -85,23 +85,23 @@ let remindersController = {
   },
 
   searchBarResults: (req, res) => {
-    // Search for reminder based on its title name
+    // Search for event based on its title name
     let searchResultsDatabase = [];
     const userSearchTerm = req.query.search;
 
     //console.log(`DEBUG: userSearchTerm is: ${userSearchTerm}`);
 
-    for (let i = 0; i < req.user.reminders.length; i++) {
+    for (let i = 0; i < req.user.events.length; i++) {
       // if substring found
 
-      if (req.user.reminders[i].title.toLowerCase().includes(userSearchTerm.toLowerCase())) {
-        searchResultsDatabase.push(req.user.reminders[i]);
+      if (req.user.events[i].title.toLowerCase().includes(userSearchTerm.toLowerCase())) {
+        searchResultsDatabase.push(req.user.events[i]);
       }
     }
     sortedTags = sortTags(searchResultsDatabase);
-    res.render("reminder/index", {
+    res.render("event/index", {
       user: req.user,
-      reminders: searchResultsDatabase,
+      events: searchResultsDatabase,
       database: database,
       friendIDs: req.user.friends.friendID,
       calendarData,
@@ -109,16 +109,16 @@ let remindersController = {
     });
   },
 
-  // Create a new reminder
+  // Create a new event
   create: async (req, res) => {
     // const tempSubtasks = [];
 //    const tempSubtasks = req.body.subtasks.split(",");
 
     let idNum = Number(1);
-    if (req.user.reminders.length != 0) {
-      idNum = Number(req.user.reminders[req.user.reminders.length - 1].id) + 1;
+    if (req.user.events.length != 0) {
+      idNum = Number(req.user.events[req.user.events.length - 1].id) + 1;
     }
-    const reminder = {
+    const event = {
       id: idNum,
       title: req.body.title,
       description: req.body.description,
@@ -131,100 +131,100 @@ let remindersController = {
     //console.log(`DEBUG create tempSubtasks is: ${tempSubtasks}`)
     //console.log(typeof tempSubtasks);
 
-    // Use Unsplash API to fetch images for reminders
+    // Use Unsplash API to fetch images for events
 
     /*
     const client_id = process.env.Unsplash_CLIENT_ID;
     const photos = await fetch(
-      `https://api.unsplash.com/photos/random?query=${reminder.title}&client_id=${client_id}`
+      `https://api.unsplash.com/photos/random?query=${event.title}&client_id=${client_id}`
     );
 
     const parsedPhotos = await photos.json();
 
     if ("errors" in parsedPhotos) {
       console.log("ERROR: Cannot find image!");
-      reminder.image_url = "/Reminder.svg";
-      req.user.reminders.push(reminder);
+      event.image_url = "/event.svg";
+      req.user.events.push(event);
     } else {
-      // Save the URL into reminder object
-      reminder.image_url = parsedPhotos.urls.regular;
+      // Save the URL into event object
+      event.image_url = parsedPhotos.urls.regular;
 
-      req.user.reminders.push(reminder);
+      req.user.events.push(event);
     }
     */
 
-    reminder.image_url = "/Reminder.svg"
-    req.user.reminders.push(reminder);
+    event.image_url = "/event.svg"
+    req.user.events.push(event);
 
     update()
-    res.redirect("/reminders");
+    res.redirect("/events");
   },
 
-  // Edit a specific reminder
+  // Edit a specific event
   edit: (req, res) => {
-    const reminderToFind = req.params.id;
-    const searchResult = req.user.reminders.find(function (reminder) {
-      return reminder.id == reminderToFind;
+    const eventToFind = req.params.id;
+    const searchResult = req.user.events.find(function (event) {
+      return event.id == eventToFind;
     });
     // update()   // not necessary
-    res.render("reminder/edit", { reminderItem: searchResult });
+    res.render("event/edit", { eventItem: searchResult });
   },
 
-  // Update a specific reminder
+  // Update a specific event
   update: (req, res) => {
-    // Loop through all reminders and update the correct one (id)
+    // Loop through all events and update the correct one (id)
 
     // const tempSubtasks = req.body.subtasks.split(",");
-    req.user.reminders.forEach((reminder) => {
-      if (String(reminder.id) === req.params.id) {
-        reminder.title = req.body.title;
-        reminder.description = req.body.description;
-        reminder.importance = req.body.importance;
-        reminder.tags = req.body.tags.split(",").map(item=>item.trim());
-//        reminder.subtasks = tempSubtasks;
-        reminder.date = formatDate(req.body.date)  // req.body.date.replace("T", " ");
+    req.user.events.forEach((event) => {
+      if (String(event.id) === req.params.id) {
+        event.title = req.body.title;
+        event.description = req.body.description;
+        event.importance = req.body.importance;
+        event.tags = req.body.tags.split(",").map(item=>item.trim());
+//        event.subtasks = tempSubtasks;
+        event.date = formatDate(req.body.date)  // req.body.date.replace("T", " ");
       }
       // console.log(`DEBUG update tempSubtasks is: ${tempSubtasks}`)
       // console.log(typeof tempSubtasks);
     });
     update()
-    res.redirect("/reminder/" + req.params.id);
+    res.redirect("/event/" + req.params.id);
   },
 
-  // Delete reminder based on reminder's id
+  // Delete event based on event's id
   delete: (req, res) => {
-    const reminderToFind = req.params.id;
+    const eventToFind = req.params.id;
 
-    req.user.reminders.forEach((reminder) => {
-      reminder.id = String(reminder.id);
+    req.user.events.forEach((event) => {
+      event.id = String(event.id);
     });
 
     // Not found by default
     let index = -1;
-    for (let i = 0; i < req.user.reminders.length; i++) {
-      if (req.user.reminders[i].id === reminderToFind) {
+    for (let i = 0; i < req.user.events.length; i++) {
+      if (req.user.events[i].id === eventToFind) {
         //console.log(i);
         index = i;
         break;
       }
     }
 
-    const result = req.user.reminders.filter(({ id }) =>
-      id.includes(reminderToFind)
+    const result = req.user.events.filter(({ id }) =>
+      id.includes(eventToFind)
     );
     //console.log(result);
 
     // Remove array element based on index position
     if (index >= 0) {
-      req.user.reminders.splice(index, 1);
+      req.user.events.splice(index, 1);
     }
     update()
-    res.redirect("/reminders");
+    res.redirect("/events");
   },
 
-  // Showing friend's reminder on the main page
+  // Showing friend's event on the main page
   listFriends: (req, res) => {
-    res.render("reminder/friends", {
+    res.render("event/friends", {
       user: req.user,
       database: database,
     });
@@ -232,19 +232,19 @@ let remindersController = {
 
   listEventOfTheDay: (req, res) => {
     const dateString = req.params.date
-    const reminders = req.user.reminders
+    const events = req.user.events
 
-    const reminderOfTheDay = reminders.filter((reminder) => {
-      let reminderDate = new Date(reminder.date)
-      let dateStrTokens = reminderDate.toLocaleString('en-GB', {dateStyle: "short"}).split('/')
-      let reminderDateString = dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[0]
+    const eventOfTheDay = events.filter((event) => {
+      let eventDate = new Date(event.date)
+      let dateStrTokens = eventDate.toLocaleString('en-GB', {dateStyle: "short"}).split('/')
+      let eventDateString = dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[0]
       
-      return reminderDateString === dateString
+      return eventDateString === dateString
       
     })
 
-    res.render("reminder/events-of-the-day", {
-      reminders: reminderOfTheDay
+    res.render("event/events-of-the-day", {
+      events: eventOfTheDay
     });
   },
 
@@ -253,21 +253,21 @@ let remindersController = {
     // Displays the next month on the calendar
     let newMonth = new Date(calendarData.shownDate.realDate.getFullYear(), calendarData.shownDate.realDate.getMonth()+1, 1)
     changeMonth(newMonth)
-    res.redirect("/reminders");
+    res.redirect("/events");
   },
 
   prevMonth: (req, res) => {
     // Displays the next month on the calendar
     let newMonth = new Date(calendarData.shownDate.realDate.getFullYear(), calendarData.shownDate.realDate.getMonth()-1, 1)
     changeMonth(newMonth)
-    res.redirect("/reminders");
+    res.redirect("/events");
   },
 
   resetMonth: (req, res) => {
     // Resets the shown month to today's month
     let newMonth = new Date(calendarData.today.realDate.getFullYear(), calendarData.today.realDate.getMonth(), calendarData.today.realDate.getDate())
     changeMonth(newMonth)
-    res.redirect("/reminders");
+    res.redirect("/events");
   },
   
   tagFilter: (req, res) => {
@@ -275,17 +275,17 @@ let remindersController = {
     let filteredEvents = []
     const filter = req.query.tag;
 
-    for (let i = 0; i < req.user.reminders.length; i++) {
+    for (let i = 0; i < req.user.events.length; i++) {
       // if the event the tag, add it to a list
-      if (req.user.reminders[i].tags.includes(filter)) {
-        filteredEvents.push(req.user.reminders[i]);
+      if (req.user.events[i].tags.includes(filter)) {
+        filteredEvents.push(req.user.events[i]);
       }
     }
 
     sortedTags = sortTags(filteredEvents);
-    res.render("reminder/index", {
+    res.render("event/index", {
       user: req.user,
-      reminders: filteredEvents,
+      events: filteredEvents,
       database: database,
       friendIDs: req.user.friends.friendID,
       calendarData,
@@ -298,17 +298,17 @@ let remindersController = {
     let filteredEvents = []
     const filter = req.query.importance;
 
-    for (let i = 0; i < req.user.reminders.length; i++) {
+    for (let i = 0; i < req.user.events.length; i++) {
       // if the event the tag, add it to a list
-      if (req.user.reminders[i].importance === filter) {
-        filteredEvents.push(req.user.reminders[i]);
+      if (req.user.events[i].importance === filter) {
+        filteredEvents.push(req.user.events[i]);
       }
     }
 
     sortedTags = sortTags(filteredEvents);
-    res.render("reminder/index", {
+    res.render("event/index", {
       user: req.user,
-      reminders: filteredEvents,
+      events: filteredEvents,
       database: database,
       friendIDs: req.user.friends.friendID,
       calendarData,
@@ -317,4 +317,4 @@ let remindersController = {
   },
 };
 
-module.exports = remindersController;
+module.exports = eventsController;

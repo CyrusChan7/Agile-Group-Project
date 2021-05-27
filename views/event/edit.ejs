@@ -1,27 +1,27 @@
-<!-- <% let reminder = JSON.stringify(reminderItem) %> -->
+<!-- <% let event = JSON.stringify(eventItem) %> -->
 <div class="container">
   <h1 class="page-header">Edit Event</h1>
-  <form action=<%= "/reminder/update/" + reminderItem.id %> method="POST">
+  <form action=<%= "/event/update/" + eventItem.id %> method="POST">
 
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" name="title" class="form-control" id="titleInput" placeholder="Enter title" value="<%= reminderItem.title %>" maxlength="100">
+      <input type="text" name="title" class="form-control" id="titleInput" placeholder="Enter title" value="<%= eventItem.title %>" maxlength="100">
     </div>
 
     <div class="form-group">
       <label for="description">Description</label>
-      <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter description" name="description" maxlength="10000"><%= reminderItem.description %></textarea>
+      <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter description" name="description" maxlength="10000"><%= eventItem.description %></textarea>
     </div>
 <!--
     <div class="form-group">
       <label for="subtasks">Subtasks</label>
-      <textarea style="white-space: pre-line" class="form-control" id="subtasksInput" rows="3" placeholder="Enter subtasks, separated by a comma" name="subtasks"><%= reminderItem.subtasks %></textarea>
+      <textarea style="white-space: pre-line" class="form-control" id="subtasksInput" rows="3" placeholder="Enter subtasks, separated by a comma" name="subtasks"><%= eventItem.subtasks %></textarea>
     </div>
 -->
 
     <div class="form-group">
       <label for="tags">Tags</label>
-      <textarea class="form-control" id="tagsInput" rows="3" placeholder="Enter tags, separated by a comma" name="tags"><%= reminderItem.tags %></textarea>
+      <textarea class="form-control" id="tagsInput" rows="3" placeholder="Enter tags, separated by a comma" name="tags"><%= eventItem.tags %></textarea>
     </div>
 
     <div class="form-group">
@@ -56,7 +56,7 @@
       <label for="importance">Importance</label>
       <div class="radio">
         <label>
-          <% if (reminderItem.importance === true) { %>
+          <% if (eventItem.importance === true) { %>
             <input type="radio" name="importance" id="true" value="true" checked="checked">
           <% } else { %>
             <input type="radio" name="importance" id="true" value="true">
@@ -66,7 +66,7 @@
       </div>
       <div class="radio">
         <label>
-          <% if (reminderItem.importance === false) { %>
+          <% if (eventItem.importance === false) { %>
             <input type="radio" name="importance" id="false" value="false" checked="checked">
           <% } else { %>
             <input type="radio" name="importance" id="false" value="false">
@@ -78,20 +78,20 @@
 
 
     <button type="submit" class="btn btn-outline-primary">Submit</button>
-    <a href="/reminders" class="btn btn-outline-primary">Cancel</a>
+    <a href="/events" class="btn btn-outline-primary">Cancel</a>
   </form>
 </div>
 
 <script>
-  let reminderStr = '<%- JSON.stringify(reminderItem) %>'
-  let reminder = JSON.parse(reminderStr)
+  let eventStr = '<%- JSON.stringify(eventItem) %>'
+  let event = JSON.parse(eventStr)
   let titleInput = document.querySelector("#titleInput")
-  titleInput.value = reminder.title
+  titleInput.value = event.title
   let descriptionInput = document.querySelector("#descriptionInput")
-  descriptionInput.textContent = reminder.description
+  descriptionInput.textContent = event.description
   let dateInput = document.querySelector("#dateInput")
 
-  let dateString = reminder.date
+  let dateString = event.date
   let dateStringFormatted = ""
 
   let eventDate = new Date(dateString)
@@ -111,7 +111,7 @@
   // console.log(dateString)
 
   let importanceRadio = ''
-  switch (reminder.importance) {
+  switch (event.importance) {
     case '1':
       importanceRadio = document.querySelector('#imp-1')
       break
