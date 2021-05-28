@@ -4,7 +4,7 @@ const passport = require("./middleware/passport");
 const app = express();
 const path = require("path");
 const ejsLayouts = require("express-ejs-layouts");
-const reminderController = require("./controller/reminder_controller");
+const eventController = require("./controller/event_controller");
 const authController = require("./controller/auth_controller");
 const { ensureAuthenticated, forwardAuthenticated } = require("./middleware/checkAuth");
 const port = process.env.PORT || 3001;
@@ -38,43 +38,38 @@ app.use(ejsLayouts);    // Allow us to use ejs
 app.set("view engine", "ejs"); // Set file to use ejs
 
 // Routes start here
-app.get("/reminders", ensureAuthenticated, reminderController.list);
+app.get("/events", ensureAuthenticated, eventController.list);
 
-app.get("/reminders/date/:date", ensureAuthenticated, reminderController.listEventOfTheDay);
+app.get("/events/date/:date", ensureAuthenticated, eventController.listEventOfTheDay);
 
-app.get("/reminder/new", ensureAuthenticated, reminderController.new);
+app.get("/event/new", ensureAuthenticated, eventController.new);
 
-app.get("/reminder/friends", ensureAuthenticated, reminderController.listFriends);
+app.get("/event/:id", ensureAuthenticated, eventController.listOne);
 
-app.get("/reminder/addFriends", ensureAuthenticated, authController.addFriends);
+app.get("/event/:id/edit", ensureAuthenticated, eventController.edit);
 
+app.post("/event/", ensureAuthenticated, eventController.create);
 
-app.get("/reminder/:id", ensureAuthenticated, reminderController.listOne);
+app.post("/event/update/:id", ensureAuthenticated, eventController.update);
 
-app.get("/reminder/:id/edit", ensureAuthenticated, reminderController.edit);
+app.post("/event/delete/:id", ensureAuthenticated, eventController.delete);
 
-app.post("/reminder/", ensureAuthenticated, reminderController.create);
+app.get("/events/search?:search", ensureAuthenticated, eventController.searchBarResults);
 
-app.post("/reminder/update/:id", ensureAuthenticated, reminderController.update);
+app.get("/events/tag?:tag", ensureAuthenticated, eventController.tagFilter);
 
-app.post("/reminder/delete/:id", ensureAuthenticated, reminderController.delete);
-
-app.get("/reminders/search?:search", ensureAuthenticated, reminderController.searchBarResults);
-
-app.get("/reminders/tag?:tag", ensureAuthenticated, reminderController.tagFilter);
-
-app.get("/reminders/importance?:importance", ensureAuthenticated, reminderController.impFilter);
+app.get("/events/importance?:importance", ensureAuthenticated, eventController.impFilter);
 
 // Changes Calendar month
-app.get("/nextMonth", reminderController.nextMonth)
-app.get("/resetMonth", reminderController.resetMonth)
-app.get("/prevMonth", reminderController.prevMonth)
+app.get("/nextMonth", eventController.nextMonth)
+app.get("/resetMonth", eventController.resetMonth)
+app.get("/prevMonth", eventController.prevMonth)
 
 // Routes end here
 
 // Start of Weather API route
 app.get("/scripts/weather", (req, res) => {
-    res.sendFile(path.join(__dirname, "/views/reminder/scripts/weather.js"), err => console.log(err));
+    res.sendFile(path.join(__dirname, "/views/event/scripts/weather.js"), err => console.log(err));
 })
 // End of Weather API route
 
@@ -86,7 +81,7 @@ app.get("/login", forwardAuthenticated, (req, res) => {
 app.post("/register", authController.registerSubmit);
 
 app.post("/login", passport.authenticate("local", {
-    successRedirect: "/reminders",
+    successRedirect: "/events",
     failureRedirect: "/login",      // Route back to /login on failed authentication
 }));
 
@@ -101,7 +96,7 @@ app.get("/logout", (req, res) => {
 
 app.listen(port, function() {
     console.log(
-        "Server running. Visit: localhost:3001/reminders in your browser 🚀"
+        "Server running. Visit: localhost:3001/events in your browser 🚀"
     );
 });
 

@@ -1,0 +1,160 @@
+
+<!-- <div id="weather"> -->
+    <!-- <div id="description"></div>
+    <h4 id="temp"></h1>
+    <div id="location"></div> -->
+<!-- </div> -->
+
+<script onload="pageLoaded();" src="../scripts/weather"></script>
+
+<!-- End of weather API code -->
+
+<div class="container">
+    <h1 class="user-name">
+        <img src=<%=user.avatar %>>
+        <%= user.name %>
+    </h1>
+    
+
+    <!-- Event Calendar -->
+
+    <div class="calendar-wrapper">
+        <div class="calendar-picture">
+            <div class="date-location">
+                <!-- Only displays date if on current month -->
+                <% if ( calendarData.shownDate.month + calendarData.shownDate.year === calendarData.today.month + calendarData.today.year ) { %>
+                    <h2><%= calendarData.shownDate.month %> <%= calendarData.shownDate.date %>, <%= calendarData.shownDate.year %></h2>
+                    <h4><%= calendarData.today.weekDay %></h4>
+                <% } else { %>
+                    <h2><%= calendarData.shownDate.month %> <%= calendarData.shownDate.year %></h2>
+                <% } %>
+                
+                <h4 id="location"></h4>
+            </div>
+            
+            <div class="weather">
+                <h2 class="temperature" id="temp"></h2> <h2 class="temperature">C</h2>
+                <h4 id="description"></h4>
+                <a href="/prevMonth" class="btn btn-primary">Prev Month</a>
+                <a href="/resetMonth" class="btn btn-primary">Current Month</a>
+                <a href="/nextMonth" class="btn btn-primary">Next Month</a>
+            </div>
+            
+        </div>
+
+        <div class="calendar">
+            <% for (weekDay of calendarData.weekDays) { %>
+                <div class="calendar-day"><%= weekDay %></div>
+            <% } %>
+
+            <% let boxCount = 0; for (let i=0; i<calendarData.firstOfMonthDay; i++) { %>
+                <div class="calendar-number"></div>
+            <% boxCount++ } %>
+                
+            <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { 
+                let dateString = calendarData.shownDate.realDate.getFullYear() + String(calendarData.shownDate.realDate.getMonth()+1).padStart(2,'0') + String(i).padStart(2,'0') %>
+                <% if (i === Number(calendarData.today.date) && (calendarData.shownDate.month + calendarData.shownDate.year) === (calendarData.today.month + calendarData.today.year)) { %>
+                    <div class="calendar-number current-day">
+                    <a href=<%="/events/date/" + dateString %>> <%= i %> </a>
+                <% } else { %>
+                    <div class="calendar-number">
+                    <a href=<%="/events/date/" + dateString %>> <%= i %> </a>
+                <% } %>
+
+                        <div class="events">
+                            <%  let eventsOfTheDay = []
+                                events.forEach(function (eventItem) {
+                                    let date = new Date(eventItem.date) 
+                                    let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ')
+                                    if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.shownDate.month + String(i) + calendarData.shownDate.year) {
+                                        let newEvent = { ...eventItem }
+                                        if (newEvent.title.length > 15) {
+                                            newEvent.title = newEvent.title.slice(0,12) + '...'
+                                        }
+                                        eventsOfTheDay.push(newEvent)}}) %>
+                            <% if (eventsOfTheDay.length > 2) { %>
+                                <div><a href="/events/date/<%= dateString %>"><%= eventsOfTheDay.length %> events</a></div>
+                                <% } else { 
+                                    for (event of eventsOfTheDay) { %>
+                                        <% if (event.importance === '1') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-secondary"><%= event.title %></a></div>
+                                        <% } else if (event.importance === '2') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-success"><%= event.title %></a></div>
+                                        <% } else if (event.importance === '3') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-primary"><%= event.title %></a></div>
+                                        <% } else if (event.importance === '4') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-warning"><%= event.title %></a></div>
+                                        <% } else if (event.importance === '5') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-danger"><%= event.title %></a></div>
+                                        <% } else { %>
+                                            <div><a href="/event/<%= event.id%>"><%= event.title %></a></div>
+                                <% }}} %>
+                        </div>
+                    </div>
+
+
+            <% boxCount++ } %>
+            <% while (boxCount%7 !== 0) { %>
+                <div class="calendar-number"></div>
+                <% boxCount++ } %>
+        </div>
+    </div>
+
+
+    <h1 class="events-header">Events</h1>
+    <form action="/events/search" method="GET">
+        <input type="text" name="search" id="search" placeholder="Search for events" class="search" />
+        <button class="search-btn" type="submit">Search</button>
+    </form>
+
+    <form action="/events/importance" method="GET">
+        <label for="importance">Filter by importance: </label>
+        <select name="importance" id="importance">
+            <option value="1">Very Low Importance</option>
+            <option value="2">Low Importance</option>
+            <option value="3">Moderate Importance</option>
+            <option value="4">High Importance</option>
+            <option value="5">Very High Importance</option>
+        </select>
+        <input type="submit" value="Filter">
+    </form>
+
+    <form action="/events/tag" method="GET">
+    <% if (sortedTags.length > 0) {
+        for (i=0; i < sortedTags.length; i++){ %>
+            <button class="imp-tag badge badge-info" name="tag" type="submit" value="<%= sortedTags[i][0]%>"><%= sortedTags[i][0] + " : " + sortedTags[i][1]%></button>
+    <% }} %>
+    </form>
+    <a href="/events" class="imp-tag badge badge-light">Clear filter</a>
+    <ul class="list-group">
+        <% events.forEach(function (eventItem) { %>
+            <li class="list-group-item">
+                <img src=<%=eventItem.image_url %> alt=
+                <%= eventItem.title %> style="width:50px; height:50px;">
+                <span>
+                    <strong><%= eventItem.title %>: </strong>
+                    <%= eventItem.description %>
+                        || Date: <%= eventItem.date %>
+                        || Tags: 
+                        <% for (tag of eventItem.tags) {
+                            if (tag !== "") { %>
+                                <span class="badge badge-info"><%=tag%></span>
+                            <% }} %>  
+                            <!-- (<%= eventItem.tags %>) -->
+                        <a class="pull-right" href=<%="/event/" + eventItem.id %>>View</a><br>
+                            <% if (eventItem.importance === '1') { %>
+                                    <span class="imp-tag badge badge-secondary">Very Low Importance</span>
+                                <% } else if (eventItem.importance === '2') { %>
+                                    <span class="imp-tag badge badge-success">Low Importance</span>
+                                <% } else if (eventItem.importance === '3') { %>
+                                    <span class="imp-tag badge badge-primary">Moderate Importance</span>
+                                <% } else if (eventItem.importance === '4') { %>
+                                    <span class="imp-tag badge badge-warning">High Importance</span>
+                                <% } else if (eventItem.importance === '5') { %>
+                                    <span class="imp-tag badge badge-danger">Very High Importance</span>
+                                <% } %>
+                </span>
+            </li>
+        <% }) %>
+    </ul>
+</div>
