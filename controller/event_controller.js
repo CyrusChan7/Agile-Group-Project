@@ -24,7 +24,7 @@ function sortTags(events) {
 }
 
 function formatDate(eventDateStr) {
-
+  // standardizes the date format to store
   let eventDate = new Date(eventDateStr)
 
   if (eventDateStr === "") {
@@ -59,7 +59,7 @@ let eventsController = {
   },
 
   new: (req, res) => {
-    // Shows the create screen
+    // Show the create event screen
     res.render("event/create");
   },
 
@@ -101,8 +101,8 @@ let eventsController = {
     });
   },
 
-  // Create a new event
   create: async (req, res) => {
+    // Create a new event
     let idNum = Number(1);
     if (req.user.events.length != 0) {
       idNum = Number(req.user.events[req.user.events.length - 1].id) + 1;
@@ -143,8 +143,8 @@ let eventsController = {
     res.redirect("/events");
   },
 
-  // Edit a specific event
   edit: (req, res) => {
+    // Edit a specific event
     const eventToFind = req.params.id;
     const searchResult = req.user.events.find(function (event) {
       return event.id == eventToFind;
@@ -173,11 +173,6 @@ let eventsController = {
   delete: (req, res) => {
     const eventToFind = Number(req.params.id);
 
-/*
-    req.user.events.forEach((event) => {
-      event.id = Number(event.id);
-    });
-*/
     // Not found by default
     let index = -1;
     for (let i = 0; i < req.user.events.length; i++) {
@@ -187,13 +182,8 @@ let eventsController = {
         break;
       }
     }
-    /*
 
-    const result = req.user.events.filter(({ id }) =>
-      id.includes(eventToFind)
-    );
-    */
-    // Remove array element based on index position
+    // Remove from event list based on index position
     if (index >= 0) {
       req.user.events.splice(index, 1);
     }
@@ -202,6 +192,7 @@ let eventsController = {
   },
 
   listEventOfTheDay: (req, res) => {
+    // Show all the events for a specific day
     const dateString = req.params.date
     const events = req.user.events
 
@@ -218,7 +209,6 @@ let eventsController = {
     });
   },
 
-  // Change months
   nextMonth: (req, res) => {
     // Displays the next month on the calendar
     const newMonth = new Date(calendarData.shownDate.realDate.getFullYear(), calendarData.shownDate.realDate.getMonth()+1, 1);

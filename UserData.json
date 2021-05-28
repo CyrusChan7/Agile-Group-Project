@@ -72,12 +72,7 @@
 				"date": "5/18/2021, 1:04:00 PM"
 			}
 		],
-		"avatar": "https://avatars.abstractapi.com/v1/?api_key=861a81cdc8b34deaa70d2c267e787c65&name=Cindy&image_size=60&char_limit=2&background_color=335eea&font_color=ffffff&is_rounded=true&is_uppercase=true",
-		"friends": {
-			"friendID": [
-				"3"
-			]
-		}
+		"avatar": "https://avatars.abstractapi.com/v1/?api_key=861a81cdc8b34deaa70d2c267e787c65&name=Cindy&image_size=60&char_limit=2&background_color=335eea&font_color=ffffff&is_rounded=true&is_uppercase=true"
 	},
 	{
 		"id": 2,
@@ -96,10 +91,7 @@
 				"tags": "hehexd"
 			}
 		],
-		"avatar": "https://avatars.abstractapi.com/v1/?api_key=undefined&name=Alex&image_size=60&char_limit=2&background_color=0cbf18&font_color=ffffff&is_rounded=true&is_uppercase=true",
-		"friends": {
-			"friendID": []
-		}
+		"avatar": "https://avatars.abstractapi.com/v1/?api_key=undefined&name=Alex&image_size=60&char_limit=2&background_color=0cbf18&font_color=ffffff&is_rounded=true&is_uppercase=true"
 	},
 	{
 		"id": 3,
@@ -128,10 +120,7 @@
 				"date": "2021-05-12 19:01"
 			}
 		],
-		"avatar": "https://avatars.abstractapi.com/v1/?api_key=861a81cdc8b34deaa70d2c267e787c65&name=Bosco%20Chan&image_size=60&char_limit=2&background_color=335eea&font_color=ffffff&is_rounded=true&is_uppercase=true",
-		"friends": {
-			"friendID": []
-		}
+		"avatar": "https://avatars.abstractapi.com/v1/?api_key=861a81cdc8b34deaa70d2c267e787c65&name=Bosco%20Chan&image_size=60&char_limit=2&background_color=335eea&font_color=ffffff&is_rounded=true&is_uppercase=true"
 	},
 	{
 		"id": 4,
