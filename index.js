@@ -44,11 +44,6 @@ app.get("/events/date/:date", ensureAuthenticated, eventController.listEventOfTh
 
 app.get("/event/new", ensureAuthenticated, eventController.new);
 
-app.get("/event/friends", ensureAuthenticated, eventController.listFriends);
-
-app.get("/event/addFriends", ensureAuthenticated, authController.addFriends);
-
-
 app.get("/event/:id", ensureAuthenticated, eventController.listOne);
 
 app.get("/event/:id/edit", ensureAuthenticated, eventController.edit);

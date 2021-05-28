@@ -13,5 +13,4 @@ module.exports = {
       }
       res.redirect("/events");
     },
-  };
-  
+};

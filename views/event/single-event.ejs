@@ -23,21 +23,20 @@
 
                 <div class="flex-row">
                     <h4>Importance:</h4>
-                        <% if (eventItem.importance === '1') { %>
-                            <span class="imp-tag badge badge-secondary">Very Low Importance</span>
-                        <% } else if (eventItem.importance === '2') { %>
-                            <span class="imp-tag badge badge-success">Low Importance</span>
-                        <% } else if (eventItem.importance === '3') { %>
-                            <span class="imp-tag badge badge-primary">Moderate Importance</span>
-                        <% } else if (eventItem.importance === '4') { %>
-                            <span class="imp-tag badge badge-warning">High Importance</span>
-                        <% } else if (eventItem.importance === '5') { %>
-                            <span class="imp-tag badge badge-danger">Very High Importance</span>
-                        <% } %>
+                    <% if (eventItem.importance === '1') { %>
+                        <span class="imp-tag badge badge-secondary">Very Low Importance</span>
+                    <% } else if (eventItem.importance === '2') { %>
+                        <span class="imp-tag badge badge-success">Low Importance</span>
+                    <% } else if (eventItem.importance === '3') { %>
+                        <span class="imp-tag badge badge-primary">Moderate Importance</span>
+                    <% } else if (eventItem.importance === '4') { %>
+                        <span class="imp-tag badge badge-warning">High Importance</span>
+                    <% } else if (eventItem.importance === '5') { %>
+                        <span class="imp-tag badge badge-danger">Very High Importance</span>
+                    <% } %>
                 </div>
                 <div class="flex-row">
                     <a class="btn btn-warning" href=<%="/event/" + eventItem.id + "/edit" %>>Edit</a>
-
                     <form class="deleteForm " method="POST" action=<%="/event/delete/" + eventItem.id %>>
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>

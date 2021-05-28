@@ -45,56 +45,52 @@
         <div class="calendar">
             <% for (weekDay of calendarData.weekDays) { %>
                 <div class="calendar-day"><%= weekDay %></div>
-                <% } %>
+            <% } %>
 
             <% let boxCount = 0; for (let i=0; i<calendarData.firstOfMonthDay; i++) { %>
                 <div class="calendar-number"></div>
-                <% boxCount++ } %>
+            <% boxCount++ } %>
                 
             <% for (let i=1; i<=calendarData.lastOfMonthDate; i++) { 
                 let dateString = calendarData.shownDate.realDate.getFullYear() + String(calendarData.shownDate.realDate.getMonth()+1).padStart(2,'0') + String(i).padStart(2,'0') %>
                 <% if (i === Number(calendarData.today.date) && (calendarData.shownDate.month + calendarData.shownDate.year) === (calendarData.today.month + calendarData.today.year)) { %>
-                <div class="calendar-number current-day">
+                    <div class="calendar-number current-day">
                     <a href=<%="/events/date/" + dateString %>> <%= i %> </a>
                 <% } else { %>
                     <div class="calendar-number">
-                        <a href=<%="/events/date/" + dateString %>> <%= i %> </a>
+                    <a href=<%="/events/date/" + dateString %>> <%= i %> </a>
                 <% } %>
 
-                    <div class="events">
-
-                        <%  let eventsOfTheDay = []
-                            events.forEach(function (eventItem) {
-                                let date = new Date(eventItem.date) 
-                                let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ')
-                                if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.shownDate.month + String(i) + calendarData.shownDate.year) {
-                                    let newEvent = { ...eventItem }
-                                    if (newEvent.title.length > 15) {
-                                        newEvent.title = newEvent.title.slice(0,12) + '...'
-                                    }
-                                    eventsOfTheDay.push(newEvent)}}) %>
-                        <% if (eventsOfTheDay.length > 2) { %>
-                            <div><a href="/events/date/<%= dateString %>"><%= eventsOfTheDay.length %> events</a></div>
-                            <% } else { 
-                                for (event of eventsOfTheDay) { %>
-                                    <% if (event.importance === '1') { %>
-                                        <div><a href="/event/<%= event.id%>" class="badge badge-secondary"><%= event.title %></a></div>
-                                    <% } else if (event.importance === '2') { %>
-                                        <div><a href="/event/<%= event.id%>" class="badge badge-success"><%= event.title %></a></div>
-                                    <% } else if (event.importance === '3') { %>
-                                        <div><a href="/event/<%= event.id%>" class="badge badge-primary"><%= event.title %></a></div>
-                                    <% } else if (event.importance === '4') { %>
-                                        <div><a href="/event/<%= event.id%>" class="badge badge-warning"><%= event.title %></a></div>
-                                    <% } else if (event.importance === '5') { %>
-                                        <div><a href="/event/<%= event.id%>" class="badge badge-danger"><%= event.title %></a></div>
-                                    <% } else { %>
-                                        <div><a href="/event/<%= event.id%>"><%= event.title %></a></div>
-                                    
-                            <% }}} %>
-
+                        <div class="events">
+                            <%  let eventsOfTheDay = []
+                                events.forEach(function (eventItem) {
+                                    let date = new Date(eventItem.date) 
+                                    let dateStrTokens = date.toLocaleString('en-GB', {dateStyle: "full"}).split(' ')
+                                    if (dateStrTokens[2] + dateStrTokens[1] + dateStrTokens[3] === calendarData.shownDate.month + String(i) + calendarData.shownDate.year) {
+                                        let newEvent = { ...eventItem }
+                                        if (newEvent.title.length > 15) {
+                                            newEvent.title = newEvent.title.slice(0,12) + '...'
+                                        }
+                                        eventsOfTheDay.push(newEvent)}}) %>
+                            <% if (eventsOfTheDay.length > 2) { %>
+                                <div><a href="/events/date/<%= dateString %>"><%= eventsOfTheDay.length %> events</a></div>
+                                <% } else { 
+                                    for (event of eventsOfTheDay) { %>
+                                        <% if (event.importance === '1') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-secondary"><%= event.title %></a></div>
+                                        <% } else if (event.importance === '2') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-success"><%= event.title %></a></div>
+                                        <% } else if (event.importance === '3') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-primary"><%= event.title %></a></div>
+                                        <% } else if (event.importance === '4') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-warning"><%= event.title %></a></div>
+                                        <% } else if (event.importance === '5') { %>
+                                            <div><a href="/event/<%= event.id%>" class="badge badge-danger"><%= event.title %></a></div>
+                                        <% } else { %>
+                                            <div><a href="/event/<%= event.id%>"><%= event.title %></a></div>
+                                <% }}} %>
+                        </div>
                     </div>
-
-                </div>
 
 
             <% boxCount++ } %>
@@ -102,7 +98,7 @@
                 <div class="calendar-number"></div>
                 <% boxCount++ } %>
         </div>
-        </div>
+    </div>
 
 
     <h1 class="events-header">Events</h1>
@@ -136,32 +132,29 @@
                 <img src=<%=eventItem.image_url %> alt=
                 <%= eventItem.title %> style="width:50px; height:50px;">
                 <span>
-                
                     <strong><%= eventItem.title %>: </strong>
                     <%= eventItem.description %>
-                        || Date:
-                        <%= eventItem.date %>
-                            || Tags: <% for (tag of eventItem.tags) {
-                                if (tag !== "") { %>
-                                    <span class="badge badge-info"><%=tag%></span>
-                                <% }} %>  
+                        || Date:<%= eventItem.date %>
+                        || Tags: 
+                        <% for (tag of eventItem.tags) {
+                            if (tag !== "") { %>
+                                <span class="badge badge-info"><%=tag%></span>
+                            <% }} %>  
                             <!-- (<%= eventItem.tags %>) -->
-                            <a class="pull-right" href=<%="/event/" + eventItem.id %>>View</a><br>
-                                <% if (eventItem.importance === '1') { %>
-                                        <span class="imp-tag badge badge-secondary">Very Low Importance</span>
-                                    <% } else if (eventItem.importance === '2') { %>
-                                        <span class="imp-tag badge badge-success">Low Importance</span>
-                                    <% } else if (eventItem.importance === '3') { %>
-                                        <span class="imp-tag badge badge-primary">Moderate Importance</span>
-                                    <% } else if (eventItem.importance === '4') { %>
-                                        <span class="imp-tag badge badge-warning">High Importance</span>
-                                    <% } else if (eventItem.importance === '5') { %>
-                                        <span class="imp-tag badge badge-danger">Very High Importance</span>
-                                    <% } %>
-                                            
+                        <a class="pull-right" href=<%="/event/" + eventItem.id %>>View</a><br>
+                            <% if (eventItem.importance === '1') { %>
+                                    <span class="imp-tag badge badge-secondary">Very Low Importance</span>
+                                <% } else if (eventItem.importance === '2') { %>
+                                    <span class="imp-tag badge badge-success">Low Importance</span>
+                                <% } else if (eventItem.importance === '3') { %>
+                                    <span class="imp-tag badge badge-primary">Moderate Importance</span>
+                                <% } else if (eventItem.importance === '4') { %>
+                                    <span class="imp-tag badge badge-warning">High Importance</span>
+                                <% } else if (eventItem.importance === '5') { %>
+                                    <span class="imp-tag badge badge-danger">Very High Importance</span>
+                                <% } %>
                 </span>
-
             </li>
-            <% }) %>
+        <% }) %>
     </ul>
 </div>

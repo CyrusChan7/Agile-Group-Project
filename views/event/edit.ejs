@@ -12,12 +12,6 @@
       <label for="description">Description</label>
       <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Enter description" name="description" maxlength="10000"><%= eventItem.description %></textarea>
     </div>
-<!--
-    <div class="form-group">
-      <label for="subtasks">Subtasks</label>
-      <textarea style="white-space: pre-line" class="form-control" id="subtasksInput" rows="3" placeholder="Enter subtasks, separated by a comma" name="subtasks"><%= eventItem.subtasks %></textarea>
-    </div>
--->
 
     <div class="form-group">
       <label for="tags">Tags</label>
@@ -52,33 +46,9 @@
         <label for="imp-5">Very High Importance</label>
       </div>
     </div>
-    <!-- <div class="form-group">
-      <label for="importance">Importance</label>
-      <div class="radio">
-        <label>
-          <% if (eventItem.importance === true) { %>
-            <input type="radio" name="importance" id="true" value="true" checked="checked">
-          <% } else { %>
-            <input type="radio" name="importance" id="true" value="true">
-          <% } %>
-          Low
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <% if (eventItem.importance === false) { %>
-            <input type="radio" name="importance" id="false" value="false" checked="checked">
-          <% } else { %>
-            <input type="radio" name="importance" id="false" value="false">
-          <% } %>
-          High
-        </label>
-      </div>
-    </div> -->
-
 
     <button type="submit" class="btn btn-outline-primary">Submit</button>
-    <a href="/events" class="btn btn-outline-primary">Cancel</a>
+    <a href=<%= "/event/" + eventItem.id %> class="btn btn-outline-primary">Cancel</a>
   </form>
 </div>
 
