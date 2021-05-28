@@ -33,7 +33,7 @@
             </div>
             
             <div class="weather">
-                <h2 style="display: inline-block;" id="temp"></h2 > <h2 style="display: inline-block;">C</h2>
+                <h2 class="temperature" id="temp"></h2> <h2 class="temperature">C</h2>
                 <h4 id="description"></h4>
                 <a href="/prevMonth" class="btn btn-primary">Prev Month</a>
                 <a href="/resetMonth" class="btn btn-primary">Current Month</a>
@@ -134,7 +134,7 @@
                 <span>
                     <strong><%= eventItem.title %>: </strong>
                     <%= eventItem.description %>
-                        || Date:<%= eventItem.date %>
+                        || Date: <%= eventItem.date %>
                         || Tags: 
                         <% for (tag of eventItem.tags) {
                             if (tag !== "") { %>
