@@ -6,6 +6,17 @@
 		"password": "123",
 		"events": [
 			{
+				"id": 2,
+				"title": "June Event",
+				"description": "This is a June event",
+				"image_url": "https://images.unsplash.com/photo-1618540258747-0c54c8e2af65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTczNTl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjA4ODU3Mzc&ixlib=rb-1.2.1&q=80&w=1080",
+				"tags": [
+					"Demo"
+				],
+				"date": "6/17/2021",
+				"importance": "2"
+			},
+			{
 				"id": 4,
 				"title": "June Event",
 				"description": "This is a June event",
