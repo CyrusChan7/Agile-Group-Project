@@ -11,6 +11,7 @@
 3. Install the required dependencies using `npm install`
 4. Start the app by running `node index.js`
 5. Visit `http://localhost:3001/` in your web browser of choice (Google Chrome recommended)
+6. Login using the demo account we have created for you, email: `321@gmail.com` password: `123` or create your own account
 
 #### **Programs required:**
 - Latest Node.js LTS
