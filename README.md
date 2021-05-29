@@ -1,4 +1,4 @@
-#Eventful
+# Eventful
 
 ### A calendar app that offers a quick and easy way for the user to make, organize, and edit their events.
 
@@ -7,16 +7,15 @@
 #### **How to run Eventful locally:**
 
 1. Install the most recent LTS version of Node.js
-2. Navigate to the root file (Agile-Group-Project)
+2. Navigate to the root directory (Agile-Group-Project)
 3. Install the required dependencies using `npm install`
 4. Start the app by running `node index.js`
 5. Visit `http://localhost:3001/` in your web browser of choice (Google Chrome recommended)
 
 #### **Programs required:**
 - Latest Node.js LTS
-- Visual Studio Code (Optional)
+- Visual Studio Code or related IDE
 - A web browser 
-  **Note:** 
 
 #### **JavaScript library dependencies:**
 
@@ -48,7 +47,7 @@ To easily install dependencies, type the command `npm install`.
 
 NOTE: The first deploy must be manual regardless of whether the automatic deploy option is enabled, only subsequent deployments will be automatic.  
   
-#### **How to run tests:  
+#### **How to run tests:**  
   
 1. Type `npm run test`. All 24 tests should pass.
 
